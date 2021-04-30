@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>KPSP</Name>
+		<Assembly>C:\Users\Sidorin_O\source\repos\KSP\src\KSP\bin\x64\Debug\KSP.dll</Assembly>
+		<AddInId>FE317246-ADDC-4D82-B708-3394C31FC425</AddInId>
+		<FullClassName>KSP.Main</FullClassName>
+		<VendorId>KSP</VendorId>
+		<VendorDescription>KSP description</VendorDescription>
+	</AddIn>
+</RevitAddIns>
