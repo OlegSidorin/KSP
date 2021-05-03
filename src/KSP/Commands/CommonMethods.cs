@@ -9,6 +9,8 @@
     using System.Text;
 	public static class CommonMethods
     {
+		public static string user = @"C:\Users\" + Environment.UserName.ToString();
+		public static string workingDir = user + @"\Documents\TEST\";
 		public static int countIfParameterIs;
 		public static int countIfMSKCOdIs;  // Счетчик: Прогресс классификации элементов % это пропорция заполнения параметра "МСК_Код по классификатору"
 		public static int countAllMSKCod;   // а Прогресс заполнения параметров элементов модели % это все остальные
@@ -67,6 +69,8 @@
 				int dCol = 0;
 				string currentString = "";
 				double currentDouble = -1;
+				
+
 
 				for (int i = 0; i < sb.Length; i++)
 				{
@@ -298,6 +302,5 @@
 			sb.Append("\n");
 			return sb.ToString();
 		}
-
 	}
 }

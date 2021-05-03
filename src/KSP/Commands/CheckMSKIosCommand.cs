@@ -1,14 +1,15 @@
 ﻿namespace KSP
 {
     using System;
-    using System.Collections.Generic;
+	using System.IO;
+	using System.Collections.Generic;
     using Autodesk.Revit.UI;
     using Autodesk.Revit.DB;
     using System.Text;
     using System.Linq;
 	using static KSP.CommonMethods;
 
-	[Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
+    [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
     [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
     class CheckMSKIosCommand : IExternalCommand
     {
@@ -586,8 +587,11 @@
 			sb2.Append(sb.ToString());
 
 			//string dirPath = @outputFolder + @"\"; // для динамо
-			string dirPath = "C:\\Users\\Sidorin_O\\Documents\\TEST\\";
-			string filePathToExcel = dirPath + CropFileName(document.Title) + String.Format(" (МСК на {0:00}%)", readyOn) + ".xlsx";
+			if (!Directory.Exists(workingDir))
+			{
+				Directory.CreateDirectory(workingDir);
+			}
+			string filePathToExcel = workingDir + CropFileName(document.Title) + String.Format(" (МСК на {0:00}%)", readyOn) + ".xlsx";
 			//string filePathToTxt = CropFileName(document.Title) + String.Format(" (МСК на {0:00}%)", readyOn);
 			string excelSheet = "МСК_" + "Параметры";
 			//writeToFile(dirPath, filePathToTxt, sb2.ToString());

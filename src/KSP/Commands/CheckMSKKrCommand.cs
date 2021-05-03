@@ -1,6 +1,7 @@
 ﻿namespace KSP
 {
     using System;
+    using System.IO;
     using System.Collections.Generic;
     using Autodesk.Revit.UI;
     using Autodesk.Revit.DB;
@@ -692,9 +693,13 @@
 			sb2.Append(outputString).Append("\n");
 			sb2.Append(sb.ToString());
 
+			if (!Directory.Exists(workingDir))
+			{
+				Directory.CreateDirectory(workingDir);
+			}
 			//string dirPath = @outputFolder + @"\"; // для динамо
-			string dirPath = "C:\\Users\\Sidorin_O\\Documents\\TEST\\";
-			string filePathToExcel = dirPath + CropFileName(document.Title) + String.Format(" (МСК на {0:00}%)", readyOn) + ".xlsx";
+
+			string filePathToExcel = workingDir + CropFileName(document.Title) + String.Format(" (МСК на {0:00}%)", readyOn) + ".xlsx";
 			//string filePathToTxt = CropFileName(document.Title) + String.Format(" (МСК на {0:00}пр)", readyOn);
 			string excelSheet = CropFileName(document.Title);
 			//writeToFile(dirPath, filePathToTxt, sb2.ToString());

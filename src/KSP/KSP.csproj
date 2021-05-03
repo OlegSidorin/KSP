@@ -49,35 +49,11 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bimangle.ForgeEngine.Common, Version=1.4.2.0, Culture=neutral, PublicKeyToken=20bc10ce2f34a3e5, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Bimangle.ForgeEngine.Common.1.4.2\lib\net45\Bimangle.ForgeEngine.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Bimangle.ForgeEngine.Dwf.Base, Version=2021.3.30.1103, Culture=neutral, PublicKeyToken=20bc10ce2f34a3e5, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Bimangle.ForgeEngine.Revit2019.5.8.3\lib\net47\Bimangle.ForgeEngine.Dwf.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Bimangle.ForgeEngine.Dwf.Support, Version=2021.3.30.1103, Culture=neutral, PublicKeyToken=20bc10ce2f34a3e5, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Bimangle.ForgeEngine.Revit2019.5.8.3\lib\net47\Bimangle.ForgeEngine.Dwf.Support.dll</HintPath>
-    </Reference>
-    <Reference Include="Bimangle.ForgeEngine.Revit2019, Version=5.8.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Bimangle.ForgeEngine.Revit2019.5.8.3\lib\net47\Bimangle.ForgeEngine.Revit2019.dll</HintPath>
-    </Reference>
-    <Reference Include="Bimangle.Libs.Draco, Version=2021.3.30.1103, Culture=neutral, PublicKeyToken=20bc10ce2f34a3e5, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Bimangle.ForgeEngine.Revit2019.5.8.3\lib\net47\Bimangle.Libs.Draco.dll</HintPath>
-    </Reference>
-    <Reference Include="Bimangle.Libs.WebP, Version=2021.3.30.1103, Culture=neutral, PublicKeyToken=20bc10ce2f34a3e5, processorArchitecture=AMD64">
-      <HintPath>..\..\packages\Bimangle.ForgeEngine.Revit2019.5.8.3\lib\net47\Bimangle.Libs.WebP.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
-    </Reference>
     <Reference Include="EPPlus, Version=5.6.3.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPPlus.5.6.3\lib\net45\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="RevitAPI">
@@ -87,10 +63,6 @@
       <HintPath>..\..\ext\RevitAPIUI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
