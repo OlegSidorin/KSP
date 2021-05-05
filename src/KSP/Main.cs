@@ -62,6 +62,14 @@
             var CheckMSKIosBtn = panelAnnotation.AddItem(CheckMSKIosBtnData) as PushButton;
             CheckMSKIosBtn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\check-ios-32.png"));
 
+            var JoshTest01Data = new PushButtonData("JoshTest01Data", "Тест 1\nДжоша", Assembly.GetExecutingAssembly().Location, "KSP.JoshTest01Command")
+            {
+                ToolTipImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\red-m-128.png")),
+                ToolTip = "Проверяет наличие МСК_ параметров"
+            };
+            var JoshTest01Btn = panelAnnotation.AddItem(JoshTest01Data) as PushButton;
+            JoshTest01Btn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\cool-32.png"));
+
             return Result.Succeeded;
         }
 
