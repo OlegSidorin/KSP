@@ -18,7 +18,7 @@
         {
             var uidoc = commandData.Application.ActiveUIDocument;
 
-            TaskDialog mainDialog = new TaskDialog("Fun Secrets of Revit Coding!");
+            //TaskDialog mainDialog = new TaskDialog("Fun Secrets of Revit Coding!");
 
             //mainDialog.MainInstruction = "Secret Code in Revit API !";
             //mainDialog.MainContent = "Do you want to be an awesome, all powerful, all knowing Revit API coder?";
@@ -44,36 +44,36 @@
             myForm1.Show();
             //return;
 
-            TaskDialogResult tResult = mainDialog.Show();
+            //TaskDialogResult tResult = mainDialog.Show();
 
 
-            bool Yes = true;
+            //bool Yes = true;
 
-            if (TaskDialogResult.CommandLink1 == tResult)
-            {
-                Yes = true;
+            //if (TaskDialogResult.CommandLink1 == tResult)
+            //{
+            //    Yes = true;
 
-            }
-            else if (TaskDialogResult.CommandLink2 == tResult)
-            {
-                Yes = false;
-            }
-            else
-            {
-                return Result.Succeeded;
-            }
+            //}
+            //else if (TaskDialogResult.CommandLink2 == tResult)
+            //{
+            //    Yes = false;
+            //}
+            //else
+            //{
+            //    return Result.Succeeded;
+            //}
 
-            //if (Yes) TaskDialog.Show("TaskDialogue", "You are cool.");
-            //if (!Yes) TaskDialog.Show("TaskDialogue", "Ignorance is bliss.");
-            //if(Yes)TaskDialog.Show("TaskDialogue", "Well done.");
-            //if(!Yes)TaskDialog.Show("TaskDialogue", "Practice makes perfect.");
+            ////if (Yes) TaskDialog.Show("TaskDialogue", "You are cool.");
+            ////if (!Yes) TaskDialog.Show("TaskDialogue", "Ignorance is bliss.");
+            ////if(Yes)TaskDialog.Show("TaskDialogue", "Well done.");
+            ////if(!Yes)TaskDialog.Show("TaskDialogue", "Practice makes perfect.");
 
-            Transaction transaction = new Transaction(uidoc.Document);
-            transaction.Start("Draw Line Patterns or Weights");
-            DrawLines myThis = new DrawLines();
-            if (Yes) myThis._99_DrawLinePatterns(true, false, uidoc);
-            if (!Yes) myThis._99_DrawLinePatterns(false, false, uidoc);
-            transaction.Commit();
+            //Transaction transaction = new Transaction(uidoc.Document);
+            //transaction.Start("Draw Line Patterns or Weights");
+            //DrawLines myThis = new DrawLines();
+            //if (Yes) myThis._99_DrawLinePatterns(true, false, uidoc);
+            //if (!Yes) myThis._99_DrawLinePatterns(false, false, uidoc);
+            //transaction.Commit();
 
             return Result.Succeeded;
         }
@@ -300,6 +300,44 @@
             tr.RollBack();
 
             return lineStyles;
+        }
+    }
+
+    public class ButtonEE7Parameter : IExternalEventHandler  //this is the last when one making a checklist change, EE4 must be just for when an element is new
+    {
+        public void Execute(UIApplication uiapp)
+        {
+            Document doc = uiapp.ActiveUIDocument.Document;
+
+            try
+            {
+
+                //doc.ProjectInformation.GetParameters("Project Name")[0].Set("Space Elevator");
+
+                using (Transaction t = new Transaction(doc, "Modify Project Name"))
+                {
+                    t.Start();
+                        doc.ProjectInformation.GetParameters("Наименование проекта")[0].Set("Проект переименован");
+                    t.Commit();
+                }
+            }
+
+            #region catch and finally
+            catch (Exception ex)
+            {
+                TaskDialog.Show("Catch", "Failed due to:" + Environment.NewLine + ex.Message);
+            }
+            finally
+            {
+
+            }
+            #endregion
+        }
+
+
+        public string GetName()
+        {
+            return "External Event Example";
         }
     }
 

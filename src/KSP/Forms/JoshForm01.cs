@@ -14,50 +14,56 @@ namespace KSP.Forms
 {
     public partial class JoshForm01 : System.Windows.Forms.Form
     {
+        ButtonEE7Parameter myEE7Parameter;
+        ExternalEvent myEE7ActionParameter;
         public Document doc { get; set; }
 
-        linePatternsWeightsFalse mylinePatternsWeightsFalse;
+        LinePatternsWeightsFalse mylinePatternsWeightsFalse;
         ExternalEvent myMakeLinePatterns;
 
-        linePatternsWeightsTrue mylinePatternsWeightsTrue;
+        LinePatternsWeightsTrue mylinePatternsWeightsTrue;
         ExternalEvent myMakeLineWeights;
 
         public JoshForm01()
         {
             InitializeComponent();
-            mylinePatternsWeightsFalse = new linePatternsWeightsFalse();
+
+            myEE7Parameter = new ButtonEE7Parameter();
+            myEE7ActionParameter = ExternalEvent.Create(myEE7Parameter);
+
+            mylinePatternsWeightsFalse = new LinePatternsWeightsFalse();
             myMakeLinePatterns = ExternalEvent.Create(mylinePatternsWeightsFalse);
 
-            mylinePatternsWeightsTrue = new linePatternsWeightsTrue();
+            mylinePatternsWeightsTrue = new LinePatternsWeightsTrue();
             myMakeLineWeights = ExternalEvent.Create(mylinePatternsWeightsTrue);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             myMakeLineWeights.Raise();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             myMakeLinePatterns.Raise();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
-            throw new InvalidOperationException();
+            //throw new InvalidOperationException();
 
             try
             {
-                throw new InvalidOperationException();
-                using (Transaction t = new Transaction(doc, "Set a parameters"))
-                {
-                    t.Start();
-                    doc.ProjectInformation.GetParameters("Project Name")[0].Set("Space Elevator");  //this needs to change in two places
-                    t.Commit();
-                }
+                //throw new InvalidOperationException();
+                //using (Transaction t = new Transaction(doc, "Set a parameters"))
+                //{
+                //    t.Start();
+                //        doc.ProjectInformation.GetParameters("Project Name")[0].Set("Новый проект");  //this needs to change in two places
+                //    t.Commit();
+                //}
 
 
-                //myEE7ActionParameter.Raise();  				
+                myEE7ActionParameter.Raise();  				
             }
 
             #region catch and finally
@@ -72,7 +78,7 @@ namespace KSP.Forms
             #endregion			
         }
 
-        public class linePatternsWeightsTrue : IExternalEventHandler
+        public class LinePatternsWeightsTrue : IExternalEventHandler
         {
 
             public void Execute(UIApplication a)
@@ -98,7 +104,7 @@ namespace KSP.Forms
 
         [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
         [Autodesk.Revit.DB.Macros.AddInId("23CF5F71-5468-438D-97C7-554F4F782936")]
-        public class linePatternsWeightsFalse : IExternalEventHandler
+        public class LinePatternsWeightsFalse : IExternalEventHandler
         {
 
             public void Execute(UIApplication a)
