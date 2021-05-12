@@ -70,6 +70,14 @@
             var JoshTest01Btn = panelAnnotation.AddItem(JoshTest01Data) as PushButton;
             JoshTest01Btn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\cool-32.png"));
 
+            var SumData = new PushButtonData("SumData", "Складывает\nобъемы", Assembly.GetExecutingAssembly().Location, "KSP.SumCommand")
+            {
+                ToolTipImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\batman-32.png")),
+                ToolTip = "Суммирует объемы элементов модели"
+            };
+            var SumDataBtn = panelAnnotation.AddItem(SumData) as PushButton;
+            SumDataBtn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\batman-32.png"));
+
             return Result.Succeeded;
         }
 

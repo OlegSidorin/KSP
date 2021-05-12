@@ -88,6 +88,7 @@
     <Compile Include="Commands\CommonMethods.cs" />
     <Compile Include="Commands\CreateBIM360ViewCommand.cs" />
     <Compile Include="Commands\JoshTest01Command.cs" />
+    <Compile Include="Commands\SumCommand.cs" />
     <Compile Include="Commands\WorkSetRVTLinksCommand.cs" />
     <Compile Include="Forms\JoshForm01.cs">
       <SubType>Form</SubType>
