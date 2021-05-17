@@ -78,6 +78,14 @@
             var SumDataBtn = panelAnnotation.AddItem(SumData) as PushButton;
             SumDataBtn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\batman-32.png"));
 
+            var CodData = new PushButtonData("CodData", "Проверка заполнения\nКода по классификатору", Assembly.GetExecutingAssembly().Location, "KSP.CheckCodCommand")
+            {
+                ToolTipImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\blue-m-32.png")),
+                ToolTip = "Проверяет заполнение Кода по классификатору"
+            };
+            var CodDataBtn = panelAnnotation.AddItem(CodData) as PushButton;
+            CodDataBtn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\blue-m-32.png"));
+
             return Result.Succeeded;
         }
 

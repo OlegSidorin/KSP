@@ -12,38 +12,111 @@
     [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
     class CheckCodCommand : IExternalCommand
     {
+
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIDocument uiDoc = commandData.Application.ActiveUIDocument;
             Document doc = uiDoc.Document;
-            Element myElement = doc.GetElement(uiDoc.Selection.GetElementIds().First());
-            ElementType myElementType = doc.GetElement(myElement.GetTypeId()) as ElementType;
+            //string str = "";
+            Vsego vsego = new Vsego();
+            Vsego temp = new Vsego();
 
-            try
-            {
-                using (Transaction tr = new Transaction(doc, "trans"))
-                {
-                    tr.Start();
-                    if (myElement.LookupParameter("Комментарии") != null)
-                        myElement.GetParameters("Комментарии")[0].Set("Привет!");
-                    if (myElementType.LookupParameter("Код по классификатору") != null)
-                        myElementType.GetParameters("Код по классификатору")[0].Set("101");
-                    tr.Commit();
-                }
-            }
+            int procent = 1;
 
-            #region catch and finally
-            catch (Exception ex)
-            {
-                TaskDialog.Show("Catch", "Фигня, потому что:" + Environment.NewLine + ex.Message);
-            }
-            finally
-            {
+            //Element myElement = doc.GetElement(uiDoc.Selection.GetElementIds().First());
+            //ElementType myElementType = doc.GetElement(myElement.GetTypeId()) as ElementType;
 
-            }
-            #endregion
+            IList<Element> eitems;
+
+            // СТЕНЫ
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Walls).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Windows).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Doors).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Ceilings).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            // ПЕРЕКРЫТИЯ
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Floors).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            // КОЛОННЫ
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralColumns).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Columns).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            // КРЫШИ
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Roofs).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            // ТРУБЫ
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_PipeCurves).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_PipeFitting).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_PipeAccessory).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            // ВЕНТКОРОБА
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctCurves).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_PipeFitting).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctAccessory).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+
+
+            if (vsego.all != 0)
+                procent = 100 * vsego.withCod / vsego.all;
+
+            TaskDialog.Show("123", String.Format("всего типов {0}, заполнено {1}, процент {2}%", vsego.all, vsego.withCod, procent));
 
             return Result.Succeeded;
         }
+
+
+        class Vsego
+        {
+            public int all;
+            public int withCod;
+            public Vsego()
+            {
+                all = 0;
+                withCod = 0;
+            }
+
+        };
+
+        Vsego GetVsego(Vsego v, IList<Element> eitems, Document doc)
+        {
+            Vsego vsego = v;
+            IList<ElementType> eTypes = new List<ElementType>();
+            foreach (var item in eitems)
+            {
+                try
+                {
+                    using (Transaction t = new Transaction(doc, "t!"))
+                    {
+                        t.Start();
+                        var itemType = doc.GetElement(item.GetTypeId()) as ElementType;
+                        if (eTypes.Where(xxx => xxx.Name == itemType.Name).Count() == 0)
+                        {
+                            eTypes.Add(itemType);
+                            //str += itemType.Name;
+                            vsego.all += 1;
+                            if (itemType.GetParameters("Код по классификатору")[0].AsString() != "")
+                                vsego.withCod += 1;
+                            //str += Environment.NewLine;
+                        }
+                        t.Commit();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    TaskDialog.Show("Catch", "Фигня, потому что:" + Environment.NewLine + ex.Message);
+                }
+                //str += Environment.NewLine;
+            }
+            return vsego;
+        }
+        
     }
 }
