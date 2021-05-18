@@ -28,7 +28,7 @@
 
             IList<Element> eitems;
 
-            // СТЕНЫ
+            // АР, КР
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Walls).WhereElementIsNotElementType().ToElements();
             vsego = GetVsego(vsego, eitems, doc);
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Windows).WhereElementIsNotElementType().ToElements();
@@ -37,30 +37,45 @@
             vsego = GetVsego(vsego, eitems, doc);
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Ceilings).WhereElementIsNotElementType().ToElements();
             vsego = GetVsego(vsego, eitems, doc);
-            // ПЕРЕКРЫТИЯ
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Floors).WhereElementIsNotElementType().ToElements();
             vsego = GetVsego(vsego, eitems, doc);
-            // КОЛОННЫ
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralColumns).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralFoundation).WhereElementIsNotElementType().ToElements();
             vsego = GetVsego(vsego, eitems, doc);
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Columns).WhereElementIsNotElementType().ToElements();
             vsego = GetVsego(vsego, eitems, doc);
-            // КРЫШИ
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Roofs).WhereElementIsNotElementType().ToElements();
             vsego = GetVsego(vsego, eitems, doc);
-            // ТРУБЫ
+            // ОВ, ВК
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_PipeCurves).WhereElementIsNotElementType().ToElements();
             vsego = GetVsego(vsego, eitems, doc);
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_PipeFitting).WhereElementIsNotElementType().ToElements();
             vsego = GetVsego(vsego, eitems, doc);
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_PipeAccessory).WhereElementIsNotElementType().ToElements();
             vsego = GetVsego(vsego, eitems, doc);
-            // ВЕНТКОРОБА
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctCurves).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_FlexDuctCurves).WhereElementIsNotElementType().ToElements();
             vsego = GetVsego(vsego, eitems, doc);
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_PipeFitting).WhereElementIsNotElementType().ToElements();
             vsego = GetVsego(vsego, eitems, doc);
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctAccessory).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_MechanicalEquipment).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Sprinklers).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            // ЭОМ, СС
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_CableTray).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_CableTrayFitting).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Conduit).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Lights).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_ElectricalEquipment).WhereElementIsNotElementType().ToElements();
             vsego = GetVsego(vsego, eitems, doc);
 
 
@@ -87,6 +102,7 @@
 
         Vsego GetVsego(Vsego v, IList<Element> eitems, Document doc)
         {
+            string st = "";
             Vsego vsego = v;
             IList<ElementType> eTypes = new List<ElementType>();
             foreach (var item in eitems)
@@ -100,7 +116,7 @@
                         if (eTypes.Where(xxx => xxx.Name == itemType.Name).Count() == 0)
                         {
                             eTypes.Add(itemType);
-                            //str += itemType.Name;
+                            st = itemType.Name;
                             vsego.all += 1;
                             if (itemType.GetParameters("Код по классификатору")[0].AsString() != "")
                                 vsego.withCod += 1;
@@ -111,7 +127,7 @@
                 }
                 catch (Exception ex)
                 {
-                    TaskDialog.Show("Catch", "Фигня, потому что:" + Environment.NewLine + ex.Message);
+                    TaskDialog.Show("Catch", "Фигня, потому что: в " + st + Environment.NewLine + ex.Message);
                 }
                 //str += Environment.NewLine;
             }
