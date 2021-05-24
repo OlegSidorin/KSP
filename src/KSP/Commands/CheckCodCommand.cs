@@ -77,6 +77,8 @@
             vsego = GetVsego(vsego, eitems, doc);
             eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_ElectricalEquipment).WhereElementIsNotElementType().ToElements();
             vsego = GetVsego(vsego, eitems, doc);
+            eitems = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_SecurityDevices).WhereElementIsNotElementType().ToElements();
+            vsego = GetVsego(vsego, eitems, doc);
 
 
             if (vsego.all != 0)
