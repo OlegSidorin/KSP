@@ -38,7 +38,7 @@
             var BasePointsBtn = panelAnnotation.AddItem(BasePointsBtnData) as PushButton;
             BasePointsBtn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\base-point-32.png"));
 
-            var CheckMSKArBtnData = new PushButtonData("CheckMSKArBtnData", "Проверка\nМСК_АР", Assembly.GetExecutingAssembly().Location, "KSP.CheckMSKArCommand")
+            var CheckMSKArBtnData = new PushButtonData("CheckMSKArBtnData", "Проверка\nМСК_АР", Assembly.GetExecutingAssembly().Location, "KSP.CheckARGuidCommand")
             {
                 ToolTipImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\check-ar-150.png")),
                 ToolTip = "Проверяет наличие МСК_ параметров"
