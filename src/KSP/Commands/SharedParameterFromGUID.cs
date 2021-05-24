@@ -8,20 +8,25 @@
     using System.Text;
     using System.Linq;
     using System.Reflection;
-    class GetParameterTypeAndNameFromGUID
+    class SharedParameterFromGUID
     {
-        public string Name(Document doc, string st, string name)
+        public string Name(Document doc, string stguid, string name, List<MyParameter> myParameters)
         {
+
             string str = "";
             try
             {
                 using (Transaction t = new Transaction(doc, "1"))
                 {
                     t.Start();
-                    Guid.TryParse(st, out Guid guid);
+                    Guid.TryParse(stguid, out Guid guid);
                     SharedParameterElement sp = SharedParameterElement.Lookup(doc, guid);
                     InternalDefinition def = sp.GetDefinition();
                     str = def.Name.ToString();
+                    foreach (var e in myParameters)
+                    {
+
+                    }
                     t.Commit();
                 }
 

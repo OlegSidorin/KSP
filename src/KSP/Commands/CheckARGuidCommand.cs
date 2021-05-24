@@ -20,11 +20,21 @@
             StringBuilder sb = new StringBuilder();
             DateTime dt = DateTime.Now;
             Methods mth = new Methods();
-            GetParameterTypeAndNameFromGUID param = new GetParameterTypeAndNameFromGUID();
+            SharedParameterFromGUID param = new SharedParameterFromGUID();
             string noData = mth.noData;
             string noParameter = mth.noParameter;
 
+            List<MyParameter> myParameters = mth.AllParameters(doc);
+            foreach (var e in myParameters)
+            {
+                //sb = sb.Append("\n" + e);
+                sb = sb.Append("\n<" + e.Name + ">").Append("-" + e.isShared).Append("-" + e.isInstance);
+            }
 
+            TaskDialog.Show("Warning", sb.ToString());
+
+
+            /*
             // М_АР_Таблица для ДОБАВЛЕНИЯ параметров модели
             IList<ProjectInfo> pInfo = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).Cast<ProjectInfo>().ToList();
             if (pInfo != null)
@@ -75,6 +85,7 @@
                     sb.Append("\n");
                 }
                 sb.Append("\n");
+
             }
 
 
@@ -122,9 +133,11 @@
                 sb.Append("\n");
             }
 
+            */
 
-            TaskDialog.Show("Warning", sb.ToString());
-                return Result.Succeeded;
+
+
+            return Result.Succeeded;
         }
 
        

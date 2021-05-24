@@ -16,6 +16,44 @@
         public int countAll;
         public int countIfParameterIs;
         public int countIfMSKCOdIs;
+
+        public List<MyParameter> AllParameters(Document doc)
+        {
+            List<string> mySharedParameters = new List<string>();
+            var sharedParameters = new FilteredElementCollector(doc).OfClass(typeof(SharedParameterElement)).ToList();
+            foreach (var e in sharedParameters)
+                mySharedParameters.Add(e.Name);
+            List<MyParameter> myParameters = new List<MyParameter>();
+            BindingMap bindings = doc.ParameterBindings;
+            int n = bindings.Size;
+            if (0 < n)
+            {
+                DefinitionBindingMapIterator it = bindings.ForwardIterator();
+                while (it.MoveNext())
+                {
+                    Definition d = it.Key as Definition;
+                    Binding b = it.Current as Binding;
+                    MyParameter myParameter = 
+                        new MyParameter("name", false, true); // Name, isShared, isInstance
+                    if (d is InternalDefinition)
+                        myParameter.Name = d.Name;
+                    else
+                        myParameter.Name += d.Name;
+                    if (b is InstanceBinding)
+                        myParameter.isInstance = true;
+                    else
+                        myParameter.isInstance = false;
+                    foreach (var e in mySharedParameters)
+                    {
+                        if (d.Name == e)
+                            myParameter.isShared = true;
+                    }
+
+                    myParameters.Add(myParameter);
+                }
+            }
+            return myParameters;
+        }
         public string getParameterNameFromGuid(Document doc, string st, string name)
         {
             string str = "";

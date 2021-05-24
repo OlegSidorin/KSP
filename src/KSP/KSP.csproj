@@ -88,9 +88,10 @@
     <Compile Include="Commands\CheckMSKKrCommand.cs" />
     <Compile Include="Commands\CommonMethods.cs" />
     <Compile Include="Commands\CreateBIM360ViewCommand.cs" />
-    <Compile Include="Commands\GetParameterTypeAndNameFromGUID.cs" />
+    <Compile Include="Commands\SharedParameterFromGUID.cs" />
     <Compile Include="Commands\JoshTest01Command.cs" />
     <Compile Include="Commands\Methods.cs" />
+    <Compile Include="Commands\MyParameter.cs" />
     <Compile Include="Commands\SumCommand.cs" />
     <Compile Include="Commands\WorkSetRVTLinksCommand.cs" />
     <Compile Include="Forms\JoshForm01.cs">
