@@ -90,7 +90,7 @@
     <Compile Include="Commands\CreateBIM360ViewCommand.cs" />
     <Compile Include="Commands\SharedParameterFromGUID.cs" />
     <Compile Include="Commands\JoshTest01Command.cs" />
-    <Compile Include="Commands\Methods.cs" />
+    <Compile Include="Commands\MyMethods.cs" />
     <Compile Include="Commands\MyParameter.cs" />
     <Compile Include="Commands\SumCommand.cs" />
     <Compile Include="Commands\WorkSetRVTLinksCommand.cs" />

@@ -19,58 +19,68 @@
             Document doc = uiDoc.Document;
             StringBuilder sb = new StringBuilder();
             DateTime dt = DateTime.Now;
-            Methods mth = new Methods();
+            MyMethods myMethods = new MyMethods();
             SharedParameterFromGUID param = new SharedParameterFromGUID();
-            string noData = mth.noData;
-            string noParameter = mth.noParameter;
+            string noData = myMethods.noData;
+            string noParameter = myMethods.noParameter;
 
-            List<MyParameter> myParameters = mth.AllParameters(doc);
-            foreach (var e in myParameters)
-            {
-                //sb = sb.Append("\n" + e);
-                sb = sb.Append("\n<" + e.Name + ">").Append("-" + e.isShared).Append("-" + e.isInstance);
-            }
+            List<MyParameter> myParameters = myMethods.AllParameters(doc);
 
-            TaskDialog.Show("Warning", sb.ToString());
+            #region перевести в словарь ключ - значение
+            //Dictionary<string, MyParameter> onlyShared = new Dictionary<string, MyParameter>();
+            //foreach (var e in myParameters)
+            //{
+            //    string s = "";
+            //    try
+            //    {
+            //        if (e.GuidValue != "")
+            //        {
+            //            s = e.GuidValue + "\n(" + e.Name + ")";
+            //            onlyShared.Add(e.GuidValue, e);
+            //        }
 
+            //    }
+            //    catch (Exception x)
+            //    {
+            //        //TaskDialog.Show("1", s + "\n : " + x.Message.ToString());
+            //    }
+            //}
+            #endregion
 
-            /*
+            #region показать все параметры, внедренные в проект
+            //foreach (var e in myParameters)
+            //{
+            //    sb = sb.Append("\n" + "<" + e.GuidValue + ">" + e.Name + "-" + e.isShared + "-" + e.isInstance);
+            //    //sb = sb.Append("\n<" + e.Key + ">").Append("(" + e.Value.Name + ")").Append("-" + e.Value.isShared).Append("-" + e.Value.isInstance);
+            //}
+
+            //TaskDialog.Show("Warning", sb.ToString());
+            #endregion
+
             // М_АР_Таблица для ДОБАВЛЕНИЯ параметров модели
             IList<ProjectInfo> pInfo = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).Cast<ProjectInfo>().ToList();
+            MyParameter value = new MyParameter("", "", false, false);
             if (pInfo != null)
             {
                 string[] pSet = {
-                                        param.Name(doc, "bb06ccda-e560-4727-8ffe-10d95da2f467", "МСК_Тип проекта"),
-                                        param.Name(doc, "efd17af1-dc28-4f05-8dfb-49995f260aba", "МСК_Степень огнестойкости"),
-                                        param.Name(doc, "85aff05b-aa70-4d0f-abf8-9c9c80fd8a8b", "МСК_Отметка нуля проекта"),
-                                        param.Name(doc, "bbce2a0f-230d-4cd6-b330-4df16e65dc6c", "МСК_Отметка уровня земли"),
-                                        param.Name(doc, "03641d89-8e7d-4f95-b90e-6626b94e601e", "МСК_Проектировщик"),
-                                        param.Name(doc, "19fd1e38-47f3-4e04-b710-9b6b6ca27a5b", "МСК_Заказчик"),
-                                        param.Name(doc, "fac88977-9987-4081-8883-c5d9405e3fb3", "МСК_Имя проекта"),
-                                        param.Name(doc, "249f628c-1b80-4ed3-8962-a48a84c3c294", "МСК_Имя обьекта"),
-                                        "Номер проекта",
-                                        param.Name(doc, "3213141a-e8e6-4521-a8b4-0fa6ae8044f1", "МСК_Корпус"),
-                                        param.Name(doc, "97311fa0-e904-4db1-9398-215889ef764b", "МСК_Номер секции"),
-                                        param.Name(doc, "4f7092a4-9ac5-49dd-8250-e11d314e6202", "МСК_Количество секций")
-                    };
-                string[] ptSet = {
-                                        param.Type(doc, "bb06ccda-e560-4727-8ffe-10d95da2f467", "МСК_Тип проекта"),
-                                        param.Type(doc, "efd17af1-dc28-4f05-8dfb-49995f260aba", "МСК_Степень огнестойкости"),
-                                        param.Type(doc, "85aff05b-aa70-4d0f-abf8-9c9c80fd8a8b", "МСК_Отметка нуля проекта"),
-                                        param.Type(doc, "bbce2a0f-230d-4cd6-b330-4df16e65dc6c", "МСК_Отметка уровня земли"),
-                                        param.Type(doc, "03641d89-8e7d-4f95-b90e-6626b94e601e", "МСК_Проектировщик"),
-                                        param.Type(doc, "19fd1e38-47f3-4e04-b710-9b6b6ca27a5b", "МСК_Заказчик"),
-                                        param.Type(doc, "fac88977-9987-4081-8883-c5d9405e3fb3", "МСК_Имя проекта"),
-                                        param.Type(doc, "249f628c-1b80-4ed3-8962-a48a84c3c294", "МСК_Имя обьекта"),
-                                        "NS",
-                                        param.Type(doc, "3213141a-e8e6-4521-a8b4-0fa6ae8044f1", "МСК_Корпус"),
-                                        param.Type(doc, "97311fa0-e904-4db1-9398-215889ef764b", "МСК_Номер секции"),
-                                        param.Type(doc, "4f7092a4-9ac5-49dd-8250-e11d314e6202", "МСК_Количество секций")
-                    };
+                    myMethods.SharedParameterFromGUIDName("bb06ccda-e560-4727-8ffe-10d95da2f467", myParameters, "МСК_Тип проекта"),
+                    myMethods.SharedParameterFromGUIDName("efd17af1-dc28-4f05-8dfb-49995f260aba", myParameters, "МСК_Степень огнестойкости"),
+                    myMethods.SharedParameterFromGUIDName("85aff05b-aa70-4d0f-abf8-9c9c80fd8a8b", myParameters, "МСК_Отметка нуля проекта"),
+                    myMethods.SharedParameterFromGUIDName("bbce2a0f-230d-4cd6-b330-4df16e65dc6c", myParameters, "МСК_Отметка уровня земли"),
+                    myMethods.SharedParameterFromGUIDName("03641d89-8e7d-4f95-b90e-6626b94e601e", myParameters, "МСК_Проектировщик"),
+                    myMethods.SharedParameterFromGUIDName("19fd1e38-47f3-4e04-b710-9b6b6ca27a5b", myParameters, "МСК_Заказчик"),
+                    myMethods.SharedParameterFromGUIDName("fac88977-9987-4081-8883-c5d9405e3fb3", myParameters, "МСК_Имя проекта"),
+                    myMethods.SharedParameterFromGUIDName("249f628c-1b80-4ed3-8962-a48a84c3c294", myParameters, "МСК_Имя обьекта"),
+                    "Номер проекта",
+                    myMethods.SharedParameterFromGUIDName("3213141a-e8e6-4521-a8b4-0fa6ae8044f1", myParameters, "МСК_Корпус"),
+                    myMethods.SharedParameterFromGUIDName("97311fa0-e904-4db1-9398-215889ef764b", myParameters, "МСК_Номер секции"),
+                    myMethods.SharedParameterFromGUIDName("4f7092a4-9ac5-49dd-8250-e11d314e6202", myParameters, "МСК_Количество секций")
+                };
+
                 sb.Append("М_АР_Таблица для ДОБАВЛЕНИЯ параметров модели\n");
                 for (int i = 0; i < pSet.Count(); i++)
                 {
-                    sb.Append(pSet[i]).Append("<" + ptSet[i] + ">").Append("\t");
+                    sb.Append("\n").Append(pSet[i]).Append("\t");
                 }
                 sb.Append("\n");
 
@@ -78,8 +88,8 @@
                 {
                     for (int i = 0; i < pSet.Count(); i++)
                     {
-                        string result = mth.GetParameterValue(doc, el, pSet[i], noData, noParameter);
-                        sb.Append(result).Append("\t");
+                        string result = myMethods.GetParameterValue(doc, el, pSet[i], noData, noParameter);
+                        sb.Append("\n").Append(result).Append("\t");
                         //MSKCounter(pSet[i], result, noData, noParameter);
                     }
                     sb.Append("\n");
@@ -94,27 +104,19 @@
             if (levels != null)
             {
                 string[] pSet = {
-                                        "Имя",
-                                        "Фасад",
-                                        param.Name(doc, "6c93ae32-6fe2-48a6-ba39-b1522f8912f7", "МСК_Надземный"),
-                                        param.Name(doc, "3bca158e-04af-4032-badc-7f9f3e61b836", "МСК_Базовый уровень"),
-                                        param.Name(doc, "741ca870-26ce-460c-8c82-56c23ec53ebe", "МСК_Система пожаротушения"),
-                                        param.Name(doc, "6dd43fcd-977a-498c-8269-d3a40ac3dce3",  "МСК_Наличие АУПТ"),
-                                        param.Name(doc, "8ddb89d8-4145-480e-a813-c51afd9fd9c6",  "МСК_Уровень комфорта")
-                    };
-                string[] ptSet = {
-                                        "NS",
-                                        "NS",
-                                        param.Type(doc, "6c93ae32-6fe2-48a6-ba39-b1522f8912f7", "МСК_Надземный"),
-                                        param.Type(doc, "3bca158e-04af-4032-badc-7f9f3e61b836", "МСК_Базовый уровень"),
-                                        param.Type(doc, "741ca870-26ce-460c-8c82-56c23ec53ebe", "МСК_Система пожаротушения"),
-                                        param.Type(doc, "6dd43fcd-977a-498c-8269-d3a40ac3dce3",  "МСК_Наличие АУПТ"),
-                                        param.Type(doc, "8ddb89d8-4145-480e-a813-c51afd9fd9c6",  "МСК_Уровень комфорта")
-                    };
+                    "Имя",
+                    "Фасад",
+                    myMethods.SharedParameterFromGUIDName("6c93ae32-6fe2-48a6-ba39-b1522f8912f7", myParameters, "МСК_Надземный"),
+                    myMethods.SharedParameterFromGUIDName("3bca158e-04af-4032-badc-7f9f3e61b836", myParameters, "МСК_Базовый уровень"),
+                    myMethods.SharedParameterFromGUIDName("741ca870-26ce-460c-8c82-56c23ec53ebe", myParameters, "МСК_Система пожаротушения"),
+                    myMethods.SharedParameterFromGUIDName("6dd43fcd-977a-498c-8269-d3a40ac3dce3", myParameters, "МСК_Наличие АУПТ"),
+                    myMethods.SharedParameterFromGUIDName("8ddb89d8-4145-480e-a813-c51afd9fd9c6", myParameters, "МСК_Уровень комфорта")
+                };
+
                 sb.Append("М_АР_00_Таблица для заполнения параметров уровней\n");
                 for (int i = 0; i < pSet.Count(); i++)
                 {
-                    sb.Append(pSet[i]).Append("\t");
+                    sb.Append("\n").Append(pSet[i]).Append("\t");
                 }
                 sb.Append("\n");
 
@@ -123,8 +125,8 @@
                     sb.Append(lvl.Name).Append("\t");
                     for (int i = 1; i < pSet.Count(); i++)
                     {
-                        string result = mth.GetParameterValue(doc, lvl, pSet[i], noData, noParameter);
-                        sb.Append(result).Append("<" + ptSet[i] + ">").Append("\t");
+                        string result = myMethods.GetParameterValue(doc, lvl, pSet[i], noData, noParameter);
+                        sb.Append("\n").Append(result).Append("\t");
                         //if (i > 1)
                         //    MSKCounter(pSet[i], result, noData, noParameter);
                     }
@@ -133,10 +135,10 @@
                 sb.Append("\n");
             }
 
-            */
 
 
 
+            TaskDialog.Show("Final", sb.ToString());
             return Result.Succeeded;
         }
 

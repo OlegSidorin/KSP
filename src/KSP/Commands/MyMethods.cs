@@ -8,7 +8,7 @@
     using System.Text;
     using System.Linq;
     using System.Reflection;
-    public class Methods
+    public class MyMethods
     {
         public string noData = " ! ";
         public string noParameter = " - ";
@@ -19,10 +19,19 @@
 
         public List<MyParameter> AllParameters(Document doc)
         {
-            List<string> mySharedParameters = new List<string>();
-            var sharedParameters = new FilteredElementCollector(doc).OfClass(typeof(SharedParameterElement)).ToList();
+            List<MySharedParameter> mySharedParameters = new List<MySharedParameter>();
+            var sharedParameters = new FilteredElementCollector(doc).OfClass(typeof(SharedParameterElement)).Cast<SharedParameterElement>().ToList();
             foreach (var e in sharedParameters)
-                mySharedParameters.Add(e.Name);
+            {
+                InternalDefinition iDef = e.GetDefinition();
+                Definition def = e.GetDefinition();
+                if (def != null)
+                {
+                    MySharedParameter msp = new MySharedParameter(e.GuidValue.ToString(), iDef.Name);
+                    mySharedParameters.Add(msp);
+                }
+            }
+                
             List<MyParameter> myParameters = new List<MyParameter>();
             BindingMap bindings = doc.ParameterBindings;
             int n = bindings.Size;
@@ -34,8 +43,8 @@
                     Definition d = it.Key as Definition;
                     Binding b = it.Current as Binding;
                     MyParameter myParameter = 
-                        new MyParameter("name", false, true); // Name, isShared, isInstance
-                    if (d is InternalDefinition)
+                        new MyParameter("", "name", false, true); // Name, isShared, isInstance
+                    if (d is InternalDefinition) 
                         myParameter.Name = d.Name;
                     else
                         myParameter.Name += d.Name;
@@ -45,8 +54,11 @@
                         myParameter.isInstance = false;
                     foreach (var e in mySharedParameters)
                     {
-                        if (d.Name == e)
+                        if (myParameter.Name == e.Name)
+                        {
                             myParameter.isShared = true;
+                            myParameter.GuidValue = e.GuidValue;
+                        }   
                     }
 
                     myParameters.Add(myParameter);
@@ -54,44 +66,45 @@
             }
             return myParameters;
         }
-        public string getParameterNameFromGuid(Document doc, string st, string name)
+
+        public string SharedParameterFromGUIDName(string stguid, List<MyParameter> allParameters, string stname)
         {
-            string str = "";
-            string path = Assembly.GetExecutingAssembly().Location;
-            try
+            string s = "!!(" + stname + ")";
+            foreach(var e in allParameters)
             {
-                using (Transaction t = new Transaction(doc, "1"))
+                if (e.GuidValue == stguid)
                 {
-                    t.Start();
-                    Guid.TryParse(st, out Guid guid);
-                    SharedParameterElement sp = SharedParameterElement.Lookup(doc, guid);
-                    InternalDefinition def = sp.GetDefinition();
-                    //ParameterType pt = def.ParameterType;
-                    str = def.Name.ToString();
-                    t.Commit();
+                    if (e.isInstance)
+                        s = e.Name + "<I>";
+                    else
+                        s = e.Name + "<T>";
                 }
-
+                    
             }
-            catch (Exception e)
+            return s;
+        }
+        public bool SharedParameterFromGUIDIsInstance(string stguid, List<MyParameter> allParameters, string stname)
+        {
+            bool b = true;
+            foreach (var e in allParameters)
             {
-                str = "!" + "(" + name + ")";
+                if (e.GuidValue == stguid)
+                    b = e.isInstance;
             }
-
-
-            return str;
+            return b;
         }
 
-        public string GetElementParameterValue(Element el, string item, string noData, string noParameter)
+        public string GetParameterValue(Document doc, Element el, string item, string noData, string noParameter)
         {
-            if (item.Contains("!")) 
+            if (item.Contains("!!")) 
             {
                 return String.Format("{0}", noParameter);
             }
-            else
+            else if (item.Contains("<I>"))
             {
                 try
                 {
-                    Parameter p = el.ParametersMap.get_Item(item);
+                    Parameter p = el.ParametersMap.get_Item(item.Replace("<I>", ""));
                     if (p.HasValue)
                     {
                         if (p.StorageType == StorageType.String)
@@ -110,29 +123,42 @@
                 catch (Exception e)
                 {
                     TaskDialog.Show("Warning", e.ToString());
-                    return String.Format("{0}", noParameter);
+                    return String.Format("{0}", "исключение:" + el.Name.ToString());
                 }
             }
-        }
-
-        public string GetParameterValue(Document doc, Element el, string item, string noData, string noParameter)
-        {
-            string str = GetElementParameterValue(el, item, noData, noParameter).Replace("\t", " ").Replace("\n", " ");
-
-            if (str == noParameter)
+            else if (item.Contains("<T>"))
             {
-                if (null == el.GetTypeId())
-                    return str;
-                else
+                Element elType = doc.GetElement(el.GetTypeId());
+                try
                 {
-                    Element elType = doc.GetElement(el.GetTypeId());
-                    return GetElementParameterValue(elType, item, noData, noParameter).Replace("\t", " ").Replace("\n", " ");
+                    Parameter p = elType.ParametersMap.get_Item(item.Replace("<T>", ""));
+                    if (p.HasValue)
+                    {
+                        if (p.StorageType == StorageType.String)
+                        {
+                            if (p.AsString() == "")
+                                return String.Format("{0}", noData);
+                            else
+                                return String.Format("{0}", p.AsString());
+                        }
+                        else
+                            return String.Format("{0}", p.AsValueString());
+                    }
+                    else
+                        return String.Format("{0}", noData);
                 }
-
+                catch (Exception e)
+                {
+                    TaskDialog.Show("Warning", e.ToString());
+                    return String.Format("{0}", "исключение типа:" + el.Name.ToString());
+                }
             }
             else
-                return str;
+            {
+                return String.Format("{0}", "не общий");
+            }
         }
+
 
         public void MSKCounter(string parameter, string result, string noData, string noParameter)
         {
