@@ -80,7 +80,7 @@
                 sb.Append("М_АР_Таблица для ДОБАВЛЕНИЯ параметров модели\n");
                 for (int i = 0; i < pSet.Count(); i++)
                 {
-                    sb.Append("\n").Append(pSet[i]).Append("\t");
+                    sb.Append("\n").Append(pSet[i].Replace("<I>", "").Replace("<T>", "")).Append("\t");
                 }
                 sb.Append("\n");
 
@@ -116,7 +116,7 @@
                 sb.Append("М_АР_00_Таблица для заполнения параметров уровней\n");
                 for (int i = 0; i < pSet.Count(); i++)
                 {
-                    sb.Append("\n").Append(pSet[i]).Append("\t");
+                    sb.Append("\n").Append(pSet[i].Replace("<I>", "").Replace("<T>", "")).Append("\t");
                 }
                 sb.Append("\n");
 

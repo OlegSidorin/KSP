@@ -10,8 +10,9 @@
     using System.Reflection;
     public class MyMethods
     {
-        public string noData = " ! ";
-        public string noParameter = " - ";
+        public string noData = " [НЗ] ";
+        public string noParameter = " [НП] ";
+        public string noCategory = " [НПкЭК] ";
         public int countAllMSKCod;
         public int countAll;
         public int countIfParameterIs;
@@ -120,10 +121,10 @@
                     else
                         return String.Format("{0}", noData);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    TaskDialog.Show("Warning", e.ToString());
-                    return String.Format("{0}", "исключение:" + el.Name.ToString());
+                    //TaskDialog.Show("Warning", e.ToString());
+                    return String.Format("{0}", noCategory);
                 }
             }
             else if (item.Contains("<T>"))
@@ -147,15 +148,60 @@
                     else
                         return String.Format("{0}", noData);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    TaskDialog.Show("Warning", e.ToString());
-                    return String.Format("{0}", "исключение типа:" + el.Name.ToString());
+                    //TaskDialog.Show("Warning", e.ToString());
+                    return String.Format("{0}", noCategory);
                 }
             }
             else
             {
-                return String.Format("{0}", "не общий");
+                try
+                {
+                    Parameter p = el.ParametersMap.get_Item(item);
+                    if (p.HasValue)
+                    {
+                        if (p.StorageType == StorageType.String)
+                        {
+                            if (p.AsString() == "")
+                                return String.Format("{0}", noData);
+                            else
+                                return String.Format("{0}", p.AsString());
+                        }
+                        else
+                            return String.Format("{0}", p.AsValueString());
+                    }
+                    else
+                        return String.Format("{0}", noData);
+                }
+                catch (Exception)
+                {
+                    //TaskDialog.Show("Warning", e.ToString());
+                    Element elType = doc.GetElement(el.GetTypeId());
+                    try
+                    {
+                        Parameter p = elType.ParametersMap.get_Item(item);
+                        if (p.HasValue)
+                        {
+                            if (p.StorageType == StorageType.String)
+                            {
+                                if (p.AsString() == "")
+                                    return String.Format("{0}", noData);
+                                else
+                                    return String.Format("{0}", p.AsString());
+                            }
+                            else
+                                return String.Format("{0}", p.AsValueString());
+                        }
+                        else
+                            return String.Format("{0}", noData);
+                    }
+                    catch (Exception)
+                    {
+                        //TaskDialog.Show("Warning", e1.ToString());
+                        return String.Format("{0}", noCategory);
+                    }
+                }
             }
         }
 
