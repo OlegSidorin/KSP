@@ -674,113 +674,105 @@
 				sb.Append(m.RowElementsParameters(doc, pSet, elements, noData, noParameter));
 			}
 
-			/*
-	         * М_АР_08.1_Таблица заполнения параметров дверей
-	         */
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Doors).Where(x => x.Location != null).ToList();
+			
+	        // М_АР_08.1_Таблица заполнения параметров дверей
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Doors).Where(x => x.Location != null).ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Тип",
-										 "МСК_Код по классификатору",
-										 "МСК_Класс устойчивости ко взлому",
-										 "МСК_Устойчивость к разрушающим воздействиям",
-										 "МСК_Процент остекления",
-										 "МСК_Доступность МГН",
-										 "МСК_Предел огнестойкости",
-										 "МСК_Путь эвакуации",
-										 "МСК_Автоматическое открывание",
-										 "МСК_Автоматическое закрывание",
-										 "МСК_Наружный",
-										 "МСК_Количество слоев стекол",
-										 "МСК_Наименование газа-заполнителя камеры",
-										 "МСК_Ламинирование",
-										 "МСК_Армирование",
-										 "МСК_Решетка",
-										 "МСК_Наименование",
-										 "МСК_Марка",
-										 "МСК_Обозначение",
-										 "МСК_Код материала",
-										 "МСК_Материал",
-										 "МСК_Код материала2",
-										 "МСК_Материал2",
-										 "МСК_Противопожарная преграда",
-										 "МСК_Тип противопожарной преграды",
-										 "МСК_Остекление",
-										 "МСК_Тип открывания",
-										 "МСК_Высота порога"
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("8715f455-f9d7-4f39-b23f-7b3f437c830d", myParameters, "МСК_Класс устойчивости ко взлому"),
+					m.SharedParameterFromGUIDName("61a4dfb6-d951-4135-a709-6a00fe82977e", myParameters, "МСК_Устойчивость к разрушающим воздействиям"),
+					m.SharedParameterFromGUIDName("3fc9867b-acf5-4f2b-bc26-b773ce2c314a", myParameters, "МСК_Процент остекления"),
+					m.SharedParameterFromGUIDName("006382d2-f621-41ac-9d24-8cbbe94d45ea", myParameters, "МСК_Доступность МГН"),
+					m.SharedParameterFromGUIDName("4d902dad-86e1-4713-841a-a196798dbdf9", myParameters, "МСК_Предел огнестойкости"),
+					"МСК_Путь эвакуации",
+					m.SharedParameterFromGUIDName("2eebaa27-2210-4552-aeb0-e37ef07eca4c", myParameters, "МСК_Автоматическое открывание"),
+					m.SharedParameterFromGUIDName("906135ad-c889-4b71-9b94-ea640a4380d6", myParameters, "МСК_Автоматическое закрывание"),
+					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
+					m.SharedParameterFromGUIDName("420e30f6-9d02-41c5-881d-1a782f407277", myParameters, "МСК_Количество слоев стекол"),
+					m.SharedParameterFromGUIDName("f1cb5818-900b-407a-85a5-1aac4c0da623", myParameters, "МСК_Наименование газа-заполнителя камеры"),
+					m.SharedParameterFromGUIDName("7b3af2b7-5b5f-4322-a588-545c0e3f1cac", myParameters, "МСК_Ламинирование"),
+					m.SharedParameterFromGUIDName("288f2154-a879-410e-80ca-aaebe7a6b385", myParameters, "МСК_Армирование"),
+					m.SharedParameterFromGUIDName("00d2d2cd-e493-4607-bfad-2e0842697c5a", myParameters, "МСК_Решетка"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("1553f66a-0009-4011-b9ad-c2a6d55196af", myParameters, "МСК_Код материала2"),
+					m.SharedParameterFromGUIDName("24ec3719-0732-4663-9045-d95f820b6db5", myParameters, "МСК_Материал2"),
+					m.SharedParameterFromGUIDName("96901a85-e765-4879-957c-b8fc4ff2858b", myParameters, "МСК_Противопожарная преграда"),
+					"МСК_Тип противопожарной преграды",
+					m.SharedParameterFromGUIDName("a058b8f4-1715-4837-bbbf-849f18eb2c0b", myParameters, "МСК_Остекление"),
+					m.SharedParameterFromGUIDName("ba2b1451-e57a-4431-868d-00b46c7e8a93", myParameters, "МСК_Тип открывания"),
+					m.SharedParameterFromGUIDName("c6910d56-4529-4fbb-9ddb-35fe49aa5c41", myParameters, "МСК_Высота порога")
 
-					};
+				};
 				sb.Append("М_АР_08.1_Таблица заполнения параметров дверей\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements, noData, noParameter));
 			}
 
-
-			/*
-	         * М_АР_09.1_Таблица заполнения параметров окон (общая)
-	         */
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Windows).Where(x => x.Location != null).ToList();
+	        // М_АР_09.1_Таблица заполнения параметров окон (общая)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Windows).Where(x => x.Location != null).ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										"Тип",
-										"МСК_Код по классификатору",
-										"МСК_Площадь отстекления",
-										"МСК_Путь эвакуации",
-										"МСК_Автоматическое открывание",
-										"МСК_Автоматическое закрывание",
-										"МСК_Наружный",
-										"МСК_Количество слоев стекол",
-										"МСК_Наименование газа-заполнителя камеры",
-										"МСК_Ламинирование",
-										"МСК_Армирование",
-										"МСК_Решетка",
-										"МСК_Наименование",
-										"МСК_Марка",
-										"МСК_Обозначение",
-										"МСК_Материал",
-										"МСК_Тип окна",
-										"МСК_Тип створок",
-										"МСК_Легкосбрасываемые",
-										"МСК_Противопожарная преграда",
-										"МСК_Тип противопожарной преграды",
-										"Высота нижнего бруса",
-										"МСК_Светопропускание"
-
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("85f01269-04b3-4437-891c-e3ceacfeeabc", myParameters, "МСК_Площадь отстекления"),
+					"МСК_Путь эвакуации",
+					m.SharedParameterFromGUIDName("2eebaa27-2210-4552-aeb0-e37ef07eca4c", myParameters, "МСК_Автоматическое открывание"),
+					m.SharedParameterFromGUIDName("906135ad-c889-4b71-9b94-ea640a4380d6", myParameters, "МСК_Автоматическое закрывание"),
+					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
+					m.SharedParameterFromGUIDName("420e30f6-9d02-41c5-881d-1a782f407277", myParameters, "МСК_Количество слоев стекол"),
+					m.SharedParameterFromGUIDName("f1cb5818-900b-407a-85a5-1aac4c0da623", myParameters, "МСК_Наименование газа-заполнителя камеры"),
+					m.SharedParameterFromGUIDName("7b3af2b7-5b5f-4322-a588-545c0e3f1cac", myParameters, "МСК_Ламинирование"),
+					m.SharedParameterFromGUIDName("288f2154-a879-410e-80ca-aaebe7a6b385", myParameters, "МСК_Армирование"),
+					m.SharedParameterFromGUIDName("00d2d2cd-e493-4607-bfad-2e0842697c5a", myParameters, "МСК_Решетка"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("64bd484d-564b-4237-a18f-609bfd25923c", myParameters, "МСК_Тип окна"),
+					m.SharedParameterFromGUIDName("56263316-6377-4426-b151-561a2325ac4a", myParameters, "МСК_Тип створок"),
+					m.SharedParameterFromGUIDName("21b1ff0b-c5c5-446f-98de-79ed5a8696fd", myParameters, "МСК_Легкосбрасываемые"),
+					m.SharedParameterFromGUIDName("96901a85-e765-4879-957c-b8fc4ff2858b", myParameters, "МСК_Противопожарная преграда"),
+					"МСК_Тип противопожарной преграды",
+					"Высота нижнего бруса",
+					m.SharedParameterFromGUIDName("fdb653e9-69ff-4ece-ac52-33f354f8cc61", myParameters, "МСК_Светопропускание")
+				};
 				sb.Append("М_АР_09.1_Таблица заполнения параметров окон (общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements, noData, noParameter));
 			}
 
-
-			/*
-	         * М_АР_10.1.1_Таблица заполнения параметров лестниц (общая)
-	         */
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Stairs).Where(x => x.Location != null).ToList();
+	        // М_АР_10.1.1_Таблица заполнения параметров лестниц (общая)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Stairs).Where(x => x.Location != null).ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Тип",
-										 "МСК_Код по классификатору",
-										 "МСК_Предел огнестойкости",
-										 "Текущее количество подступенков",
-										 "Текущая высота подступенка",
-										 "Текущая ширина проступи",
-										 "МСК_Доступность МГН",
-										 "МСК_Признак несущей конструкции",
-										 "МСК_Путь эвакуации",
-										 "МСК_Наружный",
-										 "МСК_Наименование",
-										 "МСК_Форма марша",
-										 "МСК_Марка",
-										 "МСК_Обозначение",
-										 "МСК_Код материала",
-										 "МСК_Материал",
-										 "МСК_Вид деятельности",
-										 "МСК_Секция"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("4d902dad-86e1-4713-841a-a196798dbdf9", myParameters, "МСК_Предел огнестойкости"),
+					"Текущее количество подступенков",
+					"Текущая высота подступенка",
+					"Текущая ширина проступи",
+					m.SharedParameterFromGUIDName("006382d2-f621-41ac-9d24-8cbbe94d45ea", myParameters, "МСК_Доступность МГН"),
+					m.SharedParameterFromGUIDName("886ac3f7-ee92-4498-bd58-8248e37001e6", myParameters, "МСК_Признак несущей конструкции"),
+					"МСК_Путь эвакуации",
+					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("787b4306-ad82-429c-b05a-f3879192c6bf", myParameters, "МСК_Форма марша"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("4fd103c9-5ea4-4999-b484-ef3b9ae9188d", myParameters, "МСК_Вид деятельности"),
+					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция")
+				};
 				sb.Append("М_АР_10.1.1_Таблица заполнения параметров лестниц (общая)\n");
 				sb.Append(RowHeader(pSet));
 				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
