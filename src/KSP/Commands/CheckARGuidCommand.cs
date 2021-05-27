@@ -24,9 +24,11 @@
             string noData = m.noData;
             string noParameter = m.noParameter;
             string noCategory = m.noCategory;
-            m.countIfParameterIs = 0;
-            m.countIfMSKCOdIs = 0;
-            m.countAllMSKCod = 0;
+
+
+			m.countIfMSKCOdIs = 0;
+			m.countAllMSKCod = 0;
+			m.countIfParameterIs = 0;
             m.countAll = 0;
             m.readyOn = 0;
             string outputString = "";
@@ -95,9 +97,9 @@
                 {
                     for (int i = 0; i < pSet.Count(); i++)
                     {
-                        string result = m.GetParameterValue(doc, el, pSet[i], noData, noParameter);
+                        string result = m.GetParameterValue(doc, el, pSet[i]);
                         sb.Append(result).Append("\t");
-                        m.MSKCounter(pSet[i], result, noData, noParameter);
+                        m.MSKCounter(pSet[i], result);
                     }
                     sb.Append("\n");
                 }
@@ -131,10 +133,10 @@
                     sb.Append(lvl.Name).Append("\t");
                     for (int i = 1; i < pSet.Count(); i++)
                     {
-                        string result = m.GetParameterValue(doc, lvl, pSet[i], noData, noParameter);
+                        string result = m.GetParameterValue(doc, lvl, pSet[i]);
                         sb.Append(result).Append("\t");
                         if (i > 1)
-                            m.MSKCounter(pSet[i], result, noData, noParameter);
+                            m.MSKCounter(pSet[i], result);
                     }
                     sb.Append("\n");
                 }
@@ -154,13 +156,13 @@
                     "Номер",
                     m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция"),
                     m.SharedParameterFromGUIDName("4fd103c9-5ea4-4999-b484-ef3b9ae9188d", myParameters, "МСК_Вид деятельности"),
-                    m.SharedParameterFromGUIDName("e313f126-7e51-4a5d-a45a-7c6dfe02124a", myParameters, "МСК_Назначение"),
+                    m.SharedParameterFromGUIDName("71769132-b752-4452-9cce-b9fc8ddac241", myParameters, "МСК_Назначение"),
                     m.SharedParameterFromGUIDName("7f615183-6e80-4b78-98e2-132a8e78ee06", myParameters, "МСК_Тип зоны")
                 };
                 sb.Append("М_АР_01.1_Таблица для заполнения параметров зон (Площадь застройки)\n");
                 for (int i = 0; i < pSet.Count(); i++)
                 {
-                    sb.Append(pSet[i]).Append("\t");
+                    sb.Append(pSet[i].Replace("<I>", "").Replace("<T>", "")).Append("\t");
                 }
                 sb.Append("\n");
 
@@ -170,10 +172,10 @@
                     {
                         for (int i = 0; i < pSet.Count(); i++)
                         {
-                            string result = m.GetParameterValue(doc, a, pSet[i], noData, noParameter);
+                            string result = m.GetParameterValue(doc, a, pSet[i]);
                             sb.Append(result).Append("\t");
                             if (i > 1)
-                                m.MSKCounter(pSet[i], result, noData, noParameter);
+                                m.MSKCounter(pSet[i], result);
                         }
                         sb.Append("\n");
                     }
@@ -197,13 +199,13 @@
 					"Номер",
 					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция"),
 					m.SharedParameterFromGUIDName("4fd103c9-5ea4-4999-b484-ef3b9ae9188d", myParameters, "МСК_Вид деятельности"),
-					m.SharedParameterFromGUIDName("e313f126-7e51-4a5d-a45a-7c6dfe02124a", myParameters, "МСК_Назначение"),
+					m.SharedParameterFromGUIDName("71769132-b752-4452-9cce-b9fc8ddac241", myParameters, "МСК_Назначение"),
 					m.SharedParameterFromGUIDName("7f615183-6e80-4b78-98e2-132a8e78ee06", myParameters, "МСК_Тип зоны")
 				};
 				sb.Append("М_АР_01.2_Таблица для заполнения параметров зон (Общая площадь здания)\n");
 				for (int i = 0; i < pSet.Count(); i++)
 				{
-					sb.Append(pSet[i]).Append("\t");
+					sb.Append(pSet[i].Replace("<I>", "").Replace("<T>", "")).Append("\t");
 				}
 				sb.Append("\n");
 
@@ -213,10 +215,10 @@
 					{
 						for (int i = 0; i < pSet.Count(); i++)
 						{
-							string result = m.GetParameterValue(doc, a, pSet[i], noData, noParameter);
+							string result = m.GetParameterValue(doc, a, pSet[i]);
 							sb.Append(result).Append("\t");
 							if (i > 1)
-								m.MSKCounter(pSet[i], result, noData, noParameter);
+								m.MSKCounter(pSet[i], result);
 						}
 						sb.Append("\n");
 					}
@@ -240,7 +242,7 @@
 					"Номер",
 					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция"),
 					m.SharedParameterFromGUIDName("4fd103c9-5ea4-4999-b484-ef3b9ae9188d", myParameters, "МСК_Вид деятельности"),
-					m.SharedParameterFromGUIDName("e313f126-7e51-4a5d-a45a-7c6dfe02124a", myParameters, "МСК_Назначение"),
+					m.SharedParameterFromGUIDName("71769132-b752-4452-9cce-b9fc8ddac241", myParameters, "МСК_Назначение"),
 					m.SharedParameterFromGUIDName("7f615183-6e80-4b78-98e2-132a8e78ee06", myParameters, "МСК_Тип зоны"),
 					m.SharedParameterFromGUIDName("efd17af1-dc28-4f05-8dfb-49995f260aba", myParameters, "МСК_Степень огнестойкости"),
 					m.SharedParameterFromGUIDName("6fb90410-b21f-4f49-a1d7-243e00552d36", myParameters, "МСК_Кконстр_ПО"),
@@ -249,7 +251,7 @@
 				sb.Append("М_АР_01.3_Таблица для заполнения параметров зон (Пожарная безопасность)\n");
 				for (int i = 0; i < pSet.Count(); i++)
 				{
-					sb.Append(pSet[i]).Append("\t");
+					sb.Append(pSet[i].Replace("<I>", "").Replace("<T>", "")).Append("\t");
 				}
 				sb.Append("\n");
 
@@ -259,10 +261,10 @@
 					{
 						for (int i = 0; i < pSet.Count(); i++)
 						{
-							string result = m.GetParameterValue(doc, a, pSet[i], noData, noParameter);
+							string result = m.GetParameterValue(doc, a, pSet[i]);
 							sb.Append(result).Append("\t");
 							if (i > 1)
-								m.MSKCounter(pSet[i], result, noData, noParameter);
+								m.MSKCounter(pSet[i], result);
 						}
 						sb.Append("\n");
 					}
@@ -286,13 +288,13 @@
 					"Номер",
 					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция"),
 					m.SharedParameterFromGUIDName("4fd103c9-5ea4-4999-b484-ef3b9ae9188d", myParameters, "МСК_Вид деятельности"),
-					m.SharedParameterFromGUIDName("e313f126-7e51-4a5d-a45a-7c6dfe02124a", myParameters, "МСК_Назначение"),
+					m.SharedParameterFromGUIDName("71769132-b752-4452-9cce-b9fc8ddac241", myParameters, "МСК_Назначение"),
 					m.SharedParameterFromGUIDName("7f615183-6e80-4b78-98e2-132a8e78ee06", myParameters, "МСК_Тип зоны")
 				};
 				sb.Append("М_АР_01.4_Таблица для заполнения параметров зон (ОДИ. Квартиры МГН)\n");
 				for (int i = 0; i < pSet.Count(); i++)
 				{
-					sb.Append(pSet[i]).Append("\t");
+					sb.Append(pSet[i].Replace("<I>", "").Replace("<T>", "")).Append("\t");
 				}
 				sb.Append("\n");
 
@@ -302,10 +304,10 @@
 					{
 						for (int i = 0; i < pSet.Count(); i++)
 						{
-							string result = m.GetParameterValue(doc, a, pSet[i], noData, noParameter);
+							string result = m.GetParameterValue(doc, a, pSet[i]);
 							sb.Append(result).Append("\t");
 							if (i > 1)
-								m.MSKCounter(pSet[i], result, noData, noParameter);
+								m.MSKCounter(pSet[i], result);
 						}
 						sb.Append("\n");
 					}
@@ -329,13 +331,13 @@
 					"Номер",
 					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция"),
 					m.SharedParameterFromGUIDName("4fd103c9-5ea4-4999-b484-ef3b9ae9188d", myParameters, "МСК_Вид деятельности"),
-					m.SharedParameterFromGUIDName("e313f126-7e51-4a5d-a45a-7c6dfe02124a", myParameters, "МСК_Назначение"),
+					m.SharedParameterFromGUIDName("71769132-b752-4452-9cce-b9fc8ddac241", myParameters, "МСК_Назначение"),
 					m.SharedParameterFromGUIDName("7f615183-6e80-4b78-98e2-132a8e78ee06", myParameters, "МСК_Тип зоны")
 				};
 				sb.Append("М_АР_01.5_Таблица для заполнения параметров зон (ОДИ. Зона санитарно-бытовая МГН)\n");
 				for (int i = 0; i < pSet.Count(); i++)
 				{
-					sb.Append(pSet[i]).Append("\t");
+					sb.Append(pSet[i].Replace("<I>", "").Replace("<T>", "")).Append("\t");
 				}
 				sb.Append("\n");
 
@@ -345,10 +347,10 @@
 					{
 						for (int i = 0; i < pSet.Count(); i++)
 						{
-							string result = m.GetParameterValue(doc, a, pSet[i], noData, noParameter);
+							string result = m.GetParameterValue(doc, a, pSet[i]);
 							sb.Append(result).Append("\t");
 							if (i > 1)
-								m.MSKCounter(pSet[i], result, noData, noParameter);
+								m.MSKCounter(pSet[i], result);
 						}
 						sb.Append("\n");
 					}
@@ -372,14 +374,14 @@
 					"Номер",
 					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция"),
 					m.SharedParameterFromGUIDName("4fd103c9-5ea4-4999-b484-ef3b9ae9188d", myParameters, "МСК_Вид деятельности"),
-					m.SharedParameterFromGUIDName("e313f126-7e51-4a5d-a45a-7c6dfe02124a", myParameters, "МСК_Назначение"),
+					m.SharedParameterFromGUIDName("71769132-b752-4452-9cce-b9fc8ddac241", myParameters, "МСК_Назначение"),
 					m.SharedParameterFromGUIDName("7f615183-6e80-4b78-98e2-132a8e78ee06", myParameters, "МСК_Тип зоны"),
 					m.SharedParameterFromGUIDName("68d23d66-ef3e-4c3e-9bd8-128a5718d4c6", myParameters, "МСК_Вместимость")
 				};
 				sb.Append("М_АР_01.6_Таблица для заполнения параметров зон (Наземная автостоянка/Подземная автостоянка)\n");
 				for (int i = 0; i < pSet.Count(); i++)
 				{
-					sb.Append(pSet[i]).Append("\t");
+					sb.Append(pSet[i].Replace("<I>", "").Replace("<T>", "")).Append("\t");
 				}
 				sb.Append("\n");
 
@@ -389,10 +391,10 @@
 					{
 						for (int i = 0; i < pSet.Count(); i++)
 						{
-							string result = m.GetParameterValue(doc, a, pSet[i], noData, noParameter);
+							string result = m.GetParameterValue(doc, a, pSet[i]);
 							sb.Append(result).Append("\t");
 							if (i > 1)
-								m.MSKCounter(pSet[i], result, noData, noParameter);
+								m.MSKCounter(pSet[i], result);
 						}
 						sb.Append("\n");
 					}
@@ -425,7 +427,7 @@
 					m.SharedParameterFromGUIDName("83cd0930-944f-4dd6-82e4-938f33dc2ed8", myParameters, "МСК_Номер помещения"),
 					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция"),
 					m.SharedParameterFromGUIDName("4fd103c9-5ea4-4999-b484-ef3b9ae9188d", myParameters, "МСК_Вид деятельности"),
-					m.SharedParameterFromGUIDName("e313f126-7e51-4a5d-a45a-7c6dfe02124a", myParameters, "МСК_Назначение"),
+					m.SharedParameterFromGUIDName("71769132-b752-4452-9cce-b9fc8ddac241", myParameters, "МСК_Назначение"),
 					m.SharedParameterFromGUIDName("56eb1705-f327-4774-b212-ef9ad2c860b0", myParameters, "МСК_Тип помещения"),
 					m.SharedParameterFromGUIDName("763294b4-d5f5-4ca8-82fa-ce4db5cddb8f", myParameters, "МСК_Полезная площадь"),
 					m.SharedParameterFromGUIDName("9f744f48-f020-413c-afaa-3db9a7365bef", myParameters, "МСК_Расчетная площадь"),
@@ -451,11 +453,11 @@
 				};
 				sb.Append("М_АР_02_Таблица для заполнения параметров помещений\n");
 				sb.Append(m.RowHeader(pSet));
-				sb.Append(m.RowElementsParameters(doc, pSet, elements, noData, noParameter));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 	        //М_АР_03.1_Таблица заполнения параметров стен (общая)
-			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Walls).Where(x => x.Location != null).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Walls).WhereElementIsNotElementType().ToList();
 			List<Element> wallsNotOtdelka = new List<Element>();
 			if (elements != null)
 			{
@@ -464,7 +466,7 @@
 					};
 				foreach (Element e in elements)
 				{
-					string s = m.GetParameterValue(doc, e, pFilter[0], noData, noParameter);
+					string s = m.GetParameterValue(doc, e, pFilter[0]);
 					if (!s.Contains("тделка"))
 						wallsNotOtdelka.Add(e);
 				}
@@ -486,7 +488,7 @@
 				};
 				sb.Append("М_АР_03.1_Таблица заполнения параметров стен (общая)\n");
 				sb.Append(m.RowHeader(pSet));
-				sb.Append(m.RowElementsParameters(doc, pSet, wallsNotOtdelka, noData, noParameter));
+				sb.Append(m.RowElementsParameters(doc, pSet, wallsNotOtdelka));
 			}
 
 	        //М_АР_04.1_Таблица для заполнения параметров навесных фасадов, панелей и витражей (общая)
@@ -514,11 +516,11 @@
 
 				sb.Append("М_АР_04.1_Таблица для заполнения параметров навесных фасадов, панелей и витражей (общая) (разные категории)\n");
 				sb.Append(m.RowHeader(pSet));
-				sb.Append(m.RowElementsParametersWCatNameWFamily(doc, pSet, elements, noData, noParameter));
+				sb.Append(m.RowElementsParametersWCatNameWFamily(doc, pSet, elements));
 			}
 
 	        // М_АР_05.1_Таблица заполнения параметров перекрытий (общая)
-			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Floors).Where(x => x.Location != null).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Floors).WhereElementIsNotElementType().ToList();
 			List<Element> floorNotOtdelka = new List<Element>();
 			if (elements != null)
 			{
@@ -527,7 +529,7 @@
 					};
 				foreach (Element e in elements)
 				{
-					string s = m.GetParameterValue(doc, e, pFilter[0], noData, noParameter);
+					string s = m.GetParameterValue(doc, e, pFilter[0]);
 					if (!s.Contains("тделка"))
 						floorNotOtdelka.Add(e);
 				}
@@ -550,11 +552,11 @@
 				};
 				sb.Append("М_АР_05.1_Таблица заполнения параметров перекрытий (общая)\n");
 				sb.Append(m.RowHeader(pSet));
-				sb.Append(m.RowElementsParameters(doc, pSet, floorNotOtdelka, noData, noParameter));
+				sb.Append(m.RowElementsParameters(doc, pSet, floorNotOtdelka));
 			}
 
 	        // М_АР_06.1.1_Таблица заполнения параметров отделки (стены, общая)
-			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Walls).Where(x => x.Location != null).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Walls).WhereElementIsNotElementType().ToList();
 			List<Element> wallsOtdelka = new List<Element>();
 			if (elements != null)
 			{
@@ -563,7 +565,7 @@
 					};
 				foreach (Element e in elements)
 				{
-					string s = m.GetParameterValue(doc, e, pFilter[0], noData, noParameter);
+					string s = m.GetParameterValue(doc, e, pFilter[0]);
 					if (s.Contains("тделка"))
 						wallsOtdelka.Add(e);
 				}
@@ -588,11 +590,11 @@
 				};
 				sb.Append("М_АР_06.1.1_Таблица заполнения параметров отделки (стены, общая)\n");
 				sb.Append(m.RowHeader(pSet));
-				sb.Append(m.RowElementsParameters(doc, pSet, wallsOtdelka, noData, noParameter));
+				sb.Append(m.RowElementsParameters(doc, pSet, wallsOtdelka));
 			}
 
 	        // М_АР_06.2.1_Таблица заполнения параметров отделки (перекрытия, общая)
-			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Floors).Where(x => x.Location != null).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Floors).WhereElementIsNotElementType().ToList();
 			List<Element> floorOtdelka = new List<Element>();
 			if (elements != null)
 			{
@@ -601,7 +603,7 @@
 					};
 				foreach (Element e in elements)
 				{
-					string s = m.GetParameterValue(doc, e, pFilter[0], noData, noParameter);
+					string s = m.GetParameterValue(doc, e, pFilter[0]);
 					if (s.Contains("тделка"))
 						floorOtdelka.Add(e);
 				}
@@ -626,11 +628,11 @@
 					};
 				sb.Append("М_АР_06.2.1_Таблица заполнения параметров отделки (перекрытия, общая)\n");
 				sb.Append(m.RowHeader(pSet));
-				sb.Append(m.RowElementsParameters(doc, pSet, floorOtdelka, noData, noParameter));
+				sb.Append(m.RowElementsParameters(doc, pSet, floorOtdelka));
 			}
 
 	        //М_АР_06.3.1_Таблица заполнения параметров отделки (потолки, общая)
-			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Ceilings).Where(x => x.Location != null).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Ceilings).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
@@ -649,12 +651,12 @@
 				};
 				sb.Append("М_АР_06.3.1_Таблица заполнения параметров отделки (потолки, общая)\n");
 				sb.Append(m.RowHeader(pSet));
-				sb.Append(m.RowElementsParameters(doc, pSet, elements, noData, noParameter));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 
 	        //М_АР_07.1_Таблица заполнения параметров колонн (общая)
-			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralColumns).Where(x => x.Location != null).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralColumns).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
@@ -671,12 +673,12 @@
 				};
 				sb.Append("М_АР_07.1_Таблица заполнения параметров колонн (общая)\n");
 				sb.Append(m.RowHeader(pSet));
-				sb.Append(m.RowElementsParameters(doc, pSet, elements, noData, noParameter));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 			
 	        // М_АР_08.1_Таблица заполнения параметров дверей
-			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Doors).Where(x => x.Location != null).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Doors).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
@@ -712,11 +714,11 @@
 				};
 				sb.Append("М_АР_08.1_Таблица заполнения параметров дверей\n");
 				sb.Append(m.RowHeader(pSet));
-				sb.Append(m.RowElementsParameters(doc, pSet, elements, noData, noParameter));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 	        // М_АР_09.1_Таблица заполнения параметров окон (общая)
-			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Windows).Where(x => x.Location != null).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Windows).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
@@ -746,11 +748,11 @@
 				};
 				sb.Append("М_АР_09.1_Таблица заполнения параметров окон (общая)\n");
 				sb.Append(m.RowHeader(pSet));
-				sb.Append(m.RowElementsParameters(doc, pSet, elements, noData, noParameter));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 	        // М_АР_10.1.1_Таблица заполнения параметров лестниц (общая)
-			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Stairs).Where(x => x.Location != null).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Stairs).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
@@ -774,130 +776,128 @@
 					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция")
 				};
 				sb.Append("М_АР_10.1.1_Таблица заполнения параметров лестниц (общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
-			/*
-	         * М_АР_10.2.1_Таблица заполнения параметров лестничных маршей (общая)
-	         */
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_StairsRuns).Where(x => x.Location != null).ToList();
+	        // М_АР_10.2.1_Таблица заполнения параметров лестничных маршей (общая)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StairsRuns).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										"Тип",
-										"МСК_Код по классификатору",
-										"МСК_Предел огнестойкости",
-										"Текущее количество подступенков",
-										"Текущее количество проступей",
-										"Текущая ширина марша",
-										"Текущая высота подступенка",
-										"Текущая ширина проступи",
-										"МСК_Доступность МГН",
-										"МСК_Признак несущей конструкции",
-										"МСК_Путь эвакуации",
-										"МСК_Наружный",
-										"МСК_Наименование",
-										"МСК_Форма марша",
-										"МСК_Марка",
-										"МСК_Обозначение",
-										"МСК_Код материала",
-										"МСК_Материал",
-										"МСК_Вид деятельности",
-										"МСК_Секция"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("4d902dad-86e1-4713-841a-a196798dbdf9", myParameters, "МСК_Предел огнестойкости"),
+					"Текущее количество подступенков",
+					"Текущее количество проступей",
+					"Текущая ширина марша",
+					"Текущая высота подступенка",
+					"Текущая ширина проступи",
+					m.SharedParameterFromGUIDName("006382d2-f621-41ac-9d24-8cbbe94d45ea", myParameters, "МСК_Доступность МГН"),
+					m.SharedParameterFromGUIDName("886ac3f7-ee92-4498-bd58-8248e37001e6", myParameters, "МСК_Признак несущей конструкции"),
+					"МСК_Путь эвакуации",
+					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("787b4306-ad82-429c-b05a-f3879192c6bf", myParameters, "МСК_Форма марша"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("4fd103c9-5ea4-4999-b484-ef3b9ae9188d", myParameters, "МСК_Вид деятельности"),
+					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция")
+				};
 				sb.Append("М_АР_10.2.1_Таблица заполнения параметров лестничных маршей (общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 			/*
 	         * М_АР_11.1_Таблица заполнения параметров пандусов (общая)
 	         */
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Ramps).Where(x => x.Location != null).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Ramps).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										"Тип",
-										"МСК_Код по классификатору",
-										"МСК_Предел огнестойкости",
-										"МСК_Высота проезда",
-										"МСК_Доступность МГН",
-										"МСК_Признак несущей конструкции",
-										"МСК_Путь эвакуации",
-										"МСК_Наружный",
-										"МСК_Наименование",
-										"МСК_Форма пандуса",
-										"МСК_Марка",
-										"МСК_Обозначение",
-										"МСК_Код материала",
-										"МСК_Материал",
-										"МСК_Секция"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("4d902dad-86e1-4713-841a-a196798dbdf9", myParameters, "МСК_Предел огнестойкости"),
+					m.SharedParameterFromGUIDName("411832d7-f92f-49ba-aba7-31ec7754e27c", myParameters, "МСК_Высота проезда"),
+					m.SharedParameterFromGUIDName("006382d2-f621-41ac-9d24-8cbbe94d45ea", myParameters, "МСК_Доступность МГН"),
+					m.SharedParameterFromGUIDName("886ac3f7-ee92-4498-bd58-8248e37001e6", myParameters, "МСК_Признак несущей конструкции"),
+					"МСК_Путь эвакуации",
+					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("f93fdb2f-2c1c-4881-8a0c-6ee69316c64f", myParameters, "МСК_Форма пандуса"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция")
+				};
 				sb.Append("М_АР_11.1_Таблица заполнения параметров пандусов (общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 			/*
 	         * М_АР_12.1_Таблица для заполнения параметров ограждений (общая)
 	         */
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_StairsRailing).Where(x => x.Location != null).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StairsRailing).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										"Тип",
-										"МСК_Код по классификатору",
-										"Высота ограждения",
-										"МСК_Размер_Диаметр",
-										"МСК_Наружный",
-										"МСК_Наименование",
-										"МСК_Марка",
-										"МСК_Обозначение",
-										"МСК_Код материала",
-										"МСК_Материал",
-										"МСК_Секция"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Высота ограждения",
+					m.SharedParameterFromGUIDName("9b679ab7-ea2e-49ce-90ab-0549d5aa37ff", myParameters, "МСК_Размер_Диаметр"),
+					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция")
+				};
 				sb.Append("М_АР_12.1_Таблица для заполнения параметров ограждений (общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 			/*
 	         * М_АР_13_Таблица для заполнения параметров сборок
 	         */
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Assemblies).Where(x => x.Location != null).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Assemblies).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Тип",
-										 "МСК_Код по классификатору",
-										 "МСК_Наименование",
-										 "МСК_Наружный",
-										 "МСК_Метод изготовления",
-										 "МСК_Марка",
-										 "МСК_Обозначение"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
+					m.SharedParameterFromGUIDName("fb118351-20b2-4f02-bd2c-99b27abaf8b2", myParameters, "МСК_Метод изготовления"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение")
+				};
 				sb.Append("М_АР_13_Таблица для заполнения параметров сборок\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			};
 
 
 			/*
 	         * М_КР(КЛ)_07_Таблица для классификации форм
 	         */
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Mass).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Mass).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Семейство",
-										 "Тип",
-										 "Ключевая пометка",
-										 "МСК_Код по классификатору"
-					};
+					"Семейство",
+					"Тип",
+					"Ключевая пометка",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору")
+				};
 				sb.Append("М_КР(КЛ)_07_Таблица для классификации форм\n");
-				sb.Append(RowHeader(pSet));
+				sb.Append(m.RowHeader(pSet));
 				foreach (Element el in elements)
 				{
 					try
@@ -909,12 +909,12 @@
 						}
 						else
 						{
-							FamilySymbol fis = document.GetElement(fi.GetTypeId()) as FamilySymbol;
+							FamilySymbol fis = doc.GetElement(fi.GetTypeId()) as FamilySymbol;
 							sb.Append(fis.FamilyName).Append("\t");
 							sb.Append(el.Name).Append("\t");
 							sb.Append("?\t");
-							string result = GetParameterValue(document, el, "МСК_Код по классификатору", noData, noParameter);
-							MSKCounter("МСК_Код по классификатору", result, noData, noParameter);
+							string result = m.GetParameterValue(doc, el, "МСК_Код по классификатору");
+							m.MSKCounter("МСК_Код по классификатору", result);
 							sb.Append(result).Append("\t");
 							sb.Append("\n");
 						}
@@ -931,17 +931,17 @@
 			/*
 	         * М_КР(КЛ)_08_Таблица для классификации крыш
 	         */
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Roofs).ToList();
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Roofs).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Семейство",
-										 "Тип",
-										 "Ключевая пометка",
-										 "МСК_Код по классификатору"
-					};
+					"Семейство",
+					"Тип",
+					"Ключевая пометка",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору")
+				};
 				sb.Append("М_КР(КЛ)_08_Таблица для классификации крыш\n");
-				sb.Append(RowHeader(pSet));
+				sb.Append(m.RowHeader(pSet));
 				foreach (Element el in elements)
 				{
 					try
@@ -953,12 +953,12 @@
 						}
 						else
 						{
-							FamilySymbol fis = document.GetElement(fi.GetTypeId()) as FamilySymbol;
+							FamilySymbol fis = doc.GetElement(fi.GetTypeId()) as FamilySymbol;
 							sb.Append(fis.FamilyName).Append("\t");
 							sb.Append(el.Name).Append("\t");
 							sb.Append("?\t");
-							string result = GetParameterValue(document, el, "МСК_Код по классификатору", noData, noParameter);
-							MSKCounter("МСК_Код по классификатору", result, noData, noParameter);
+							string result = m.GetParameterValue(doc, el, "МСК_Код по классификатору");
+							m.MSKCounter("МСК_Код по классификатору", result);
 							sb.Append(result).Append("\t");
 							sb.Append("\n");
 						}
@@ -975,7 +975,7 @@
 			/*
 	         * М_АР(КЛ)_13_Таблица для классификации остальных категорий
 	         */
-			elements = new FilteredElementCollector(document).OfClass(typeof(FamilyInstance)).Where(x => x.Category.CategoryType == CategoryType.Model)
+			elements = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance)).Where(x => x.Category.CategoryType == CategoryType.Model)
 				.Where(x => x.Category.Name != "Линии")
 				.Where(x => x.Category.Name != "Элементы узлов")
 				.Where(x => x.Category.Name != "Двери")
@@ -994,11 +994,11 @@
 										 "Семейство",
 										 "Тип",
 										 "Ключевая пометка",
-										 "МСК_Код по классификатору"
+										 m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору")
 					};
 
 				sb.Append("М_АР(КЛ)_13_Таблица для классификации остальных категорий\n");
-				sb.Append(RowHeader(pSet));
+				sb.Append(m.RowHeader(pSet));
 				// сперва закинем элементы массива в строки, для последующей работы с ними
 				foreach (Element el in elements)
 				{
@@ -1013,15 +1013,15 @@
 						else
 						{
 							string str = "";
-							FamilySymbol fis = document.GetElement(fi.GetTypeId()) as FamilySymbol;
+							FamilySymbol fis = doc.GetElement(fi.GetTypeId()) as FamilySymbol;
 							//							sb.Append(fi.Category.Name).Append("\t");
 							//							sb.Append(fis.FamilyName).Append("\t");
 							//							sb.Append(el.Name).Append("\t");
 							//							sb.Append("?\t");
 							//							sb.Append(getParameterValue(doc,el, "МСК_Код по классификатору", noData, noParameter)).Append("\t");
 							//							sb.Append("\n");
-							string result = GetParameterValue(document, el, "МСК_Код по классификатору", noData, noParameter);
-							MSKCounter("МСК_Код по классификатору", result, noData, noParameter);
+							string result = m.GetParameterValue(doc, el, "МСК_Код по классификатору");
+							m.MSKCounter("МСК_Код по классификатору", result);
 							str += fi.Category.Name + "\t" + fis.FamilyName + "\t" + el.Name + "\t" + "?\t" + result + "\t";
 							elementsInStrings.Add(str);
 						}
@@ -1038,10 +1038,10 @@
 				foreach (string str in distinctElements)
 				{
 					if (str.Contains(noParameter))
-						countAll += 1;
+						m.countAll += 1;
 
 					if (str.Contains(noData))
-						countAll += 1;
+						m.countAll += 1;
 
 					sb.Append(str).Append("\n");
 				}
@@ -1098,7 +1098,7 @@
             //return outputString;
 
 
-            TaskDialog.Show("Final", sb.ToString());
+            TaskDialog.Show("Final", "готово!");
             return Result.Succeeded;
         }
 

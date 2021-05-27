@@ -83,6 +83,7 @@
     <Compile Include="Commands\BasePointsCommand.cs" />
     <Compile Include="Commands\CheckARGuidCommand.cs" />
     <Compile Include="Commands\CheckCodCommand.cs" />
+    <Compile Include="Commands\CheckKRGuidCommand.cs" />
     <Compile Include="Commands\CheckMSKArCommand.cs" />
     <Compile Include="Commands\CheckMSKIosCommand.cs" />
     <Compile Include="Commands\CheckMSKKrCommand.cs" />
@@ -105,8 +106,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KSP.addin.xml" />
+    <Content Include="res\ao-32.png" />
+    <Content Include="res\ao.png" />
     <Content Include="res\example.txt" />
+    <Content Include="res\navis-32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="res\КПСП_ФОП.txt" />
+    <Content Include="res\navis.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

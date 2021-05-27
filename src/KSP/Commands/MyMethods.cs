@@ -98,8 +98,9 @@
             }
             return b;
         }
-        public string GetParameterValue(Document doc, Element el, string item, string noData, string noParameter)
+        public string GetParameterValue(Document doc, Element el, string item)
         {
+            
             if (item.Contains("!!")) 
             {
                 return String.Format("{0}", noParameter);
@@ -212,12 +213,12 @@
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < pSet.Count(); i++)
             {
-                sb.Append(pSet[i]).Append("\t");
+                sb.Append(pSet[i].Replace("<I>", "").Replace("<T>", "")).Append("\t");
             }
             sb.Append("\n");
             return sb.ToString();
         }
-        public string RowElementsParameters(Document doc, string[] pSet, IList<Element> iList, string noData, string noParameter)
+        public string RowElementsParameters(Document doc, string[] pSet, IList<Element> iList)
         {
             StringBuilder sb = new StringBuilder();
             foreach (var el in iList)
@@ -225,16 +226,16 @@
                 sb.Append(el.Name).Append("\t");
                 for (int i = 1; i < pSet.Count(); i++)
                 {
-                    string result = GetParameterValue(doc, el, pSet[i], noData, noParameter);
+                    string result = GetParameterValue(doc, el, pSet[i]);
                     sb.Append(result).Append("\t");
-                    MSKCounter(pSet[i], result, noData, noParameter);
+                    MSKCounter(pSet[i], result);
                 }
                 sb.Append("\n");
             }
             sb.Append("\n");
             return sb.ToString();
         }
-        public string RowElementsParametersWCatNameWFamily(Document doc, string[] pSet, IList<Element> iList, string noData, string noParameter)
+        public string RowElementsParametersWCatNameWFamily(Document doc, string[] pSet, IList<Element> iList)
         {
             StringBuilder sb = new StringBuilder();
             foreach (var el in iList)
@@ -261,21 +262,21 @@
                 }
                 for (int i = 3; i < pSet.Count(); i++)
                 {
-                    string result = GetParameterValue(doc, el, pSet[i], noData, noParameter);
+                    string result = GetParameterValue(doc, el, pSet[i]);
                     sb.Append(result).Append("\t");
-                    MSKCounter(pSet[i], result, noData, noParameter);
+                    MSKCounter(pSet[i], result);
                 }
                 sb.Append("\n");
             }
             sb.Append("\n");
             return sb.ToString();
         }
-        public void MSKCounter(string parameter, string result, string noData, string noParameter)
+        public void MSKCounter(string parameter, string result)
         {
-            if (parameter == "МСК_Код по классификатору")
+            if (parameter.Contains("МСК_Код по классификатору"))
                 countAllMSKCod += 1;
 
-            if ((result == noData) || (result == noParameter))
+            if ((result == noData) || (result == noParameter) || (result == noCategory))
             {
                 countAll += 1;
             }
@@ -283,7 +284,7 @@
             {
                 countAll += 1;
                 countIfParameterIs += 1;
-                if (parameter == "МСК_Код по классификатору")
+                if (parameter.Contains("МСК_Код по классификатору"))
                     countIfMSKCOdIs += 1;
             }
         }
@@ -392,6 +393,11 @@
                                 sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                                 sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Yellow);
                                 sheet.Cells[currentCell].Style.Font.Color.SetColor(System.Drawing.Color.DarkRed);
+                            }
+                            if (currentString.Contains("МСК_Код по классификатору"))
+                            {
+                                sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                                sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Cornsilk);
                             }
                         }
                         csb.Clear();
