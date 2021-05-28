@@ -25,22 +25,22 @@
 
             var WorkSetRVTLinksBtnData = new PushButtonData("WorkSetRVTLinksBtnData", "WorkSet\nRVTLinks", Assembly.GetExecutingAssembly().Location, "KSP.WorkSetRVTLinksCommand")
             {
-                ToolTipImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\wset-100.png")),
+                ToolTipImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\src\KSP\res\ws-32.png")),
                 ToolTip = "Создает рабочие набопы для RVT связей"
             };
             var WorkSetRVTLinksBtn = panelBIM360.AddItem(WorkSetRVTLinksBtnData) as PushButton;
-            WorkSetRVTLinksBtn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\wset-32.png"));
+            WorkSetRVTLinksBtn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\src\KSP\res\ws-32.png"));
 
             string panelCheckName = "Подготовка к МГЭ";
             var panelCheck = application.CreateRibbonPanel(tabName, panelCheckName);
 
             var BasePointsBtnData = new PushButtonData("BasePointsBtnData", "BasePoints\nInfo", Assembly.GetExecutingAssembly().Location, "KSP.BasePointsCommand")
             {
-                ToolTipImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\base-point-150.png")),
+                ToolTipImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\src\KSP\res\bp-32.png")),
                 ToolTip = "Создает Exl файл о базовых точках"
             };
             var BasePointsBtn = panelCheck.AddItem(BasePointsBtnData) as PushButton;
-            BasePointsBtn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\base-point-32.png"));
+            BasePointsBtn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\src\KSP\res\bp-32.png"));
 
             var CheckMSKArBtnData = new PushButtonData("CheckMSKArBtnData", "Проверка\nМСК_АР", Assembly.GetExecutingAssembly().Location, "KSP.CheckARGuidCommand")
             {
@@ -50,7 +50,7 @@
             var CheckMSKArBtn = panelCheck.AddItem(CheckMSKArBtnData) as PushButton;
             CheckMSKArBtn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\check-ar-32.png"));
 
-            var CheckMSKKrBtnData = new PushButtonData("CheckMSKKrBtnData", "Проверка\nМСК_KР", Assembly.GetExecutingAssembly().Location, "KSP.CheckMSKKrCommand")
+            var CheckMSKKrBtnData = new PushButtonData("CheckMSKKrBtnData", "Проверка\nМСК_KР", Assembly.GetExecutingAssembly().Location, "KSP.CheckKRGuidCommand")
             {
                 ToolTipImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\check-kr-150.png")),
                 ToolTip = "Проверяет наличие МСК_ параметров в модели КР"
@@ -58,7 +58,7 @@
             var CheckMSKKrBtn = panelCheck.AddItem(CheckMSKKrBtnData) as PushButton;
             CheckMSKKrBtn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\check-kr-32.png"));
 
-            var CheckMSKIosBtnData = new PushButtonData("CheckMSKIosBtnData", "Проверка\nМСК_ИОС", Assembly.GetExecutingAssembly().Location, "KSP.CheckMSKIosCommand")
+            var CheckMSKIosBtnData = new PushButtonData("CheckMSKIosBtnData", "Проверка\nМСК_ИОС", Assembly.GetExecutingAssembly().Location, "KSP.CheckIOSGuidCommand")
             {
                 ToolTipImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\check-ios-150.png")),
                 ToolTip = "Проверяет наличие МСК_ параметров в модели инженерного раздела"

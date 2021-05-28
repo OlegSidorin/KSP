@@ -1078,10 +1078,10 @@
             #region Завершение и Условные обозначения
             StringBuilder sbEnd = new StringBuilder();
             sbEnd.Append("\n\nУсловные обозначения: \n");
-            sbEnd.Append("!!(_) \t - не добавлен в модель данный общий параметр\n");
-            sbEnd.Append(noParameter + "\t - не добавлен в модель общий параметр\n");
+            sbEnd.Append("!!(_) \t - не добавлен в модель общий параметр\n");
             sbEnd.Append(noData + "\t - значение параметра не заполнено\n");
-            sbEnd.Append(noCategory + "\t - не назначена категория, связанная с этим общим параметром\n");
+			sbEnd.Append(noParameter + "\t - не добавлен в модель общий параметр в экземпляре\n");
+			sbEnd.Append(noCategory + "\t - не назначена категория, связанная с этим общим параметром\n");
             #endregion
 
             sbResult.Append(sbEnd.ToString());

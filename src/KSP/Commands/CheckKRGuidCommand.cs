@@ -142,71 +142,68 @@
 
 			IList<Element> elements = new List<Element>();
 
-			/*
-	         * М_КР_01.1.1_Таблица для заполнения параметров фундаментов (кроме плитных, общая)
 
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_StructuralFoundation).Where(x => x.Location != null).Where(x => !x.Name.Contains("лита")).ToList();
+	        // М_КР_01.1.1_Таблица для заполнения параметров фундаментов (кроме плитных, общая)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralFoundation).WhereElementIsNotElementType().Where(x => !x.Name.Contains("лита")).ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										"Тип",
-										"МСК_Код по классификатору",
-										"МСК_Метод изготовления",
-										"МСК_Уровень ответственности",
-										"МСК_Расход арматуры",
-										"МСК_Защитный слой 1",
-										"МСК_Наименование",
-										"МСК_Марка",
-										"МСК_Обозначение",
-										"МСК_Код материала",
-										"МСК_Материал",
-										"МСК_С подколонником",
-										"МСК_Класс арматуры текст",
-										"МСК_Марка В",
-										"МСК_Водонепроницаемость W",
-										"МСК_Морозостойкость F",
-										"МСК_Обозначение материал"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("fb118351-20b2-4f02-bd2c-99b27abaf8b2", myParameters, "МСК_Метод изготовления"),
+					m.SharedParameterFromGUIDName("96588d70-4bff-4014-8058-048eeba2234b", myParameters, "МСК_Уровень ответственности"),
+					m.SharedParameterFromGUIDName("266a965f-d878-4a4a-baf5-f4a5cdcd69fd", myParameters, "МСК_Расход арматуры"),
+					m.SharedParameterFromGUIDName("7b89dfac-4fea-43ab-b372-1d076b4624af", myParameters, "МСК_Защитный слой 1"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("0301c4f6-cfa3-44ae-97ee-9c917b9f308c", myParameters, "МСК_С подколонником"),
+					m.SharedParameterFromGUIDName("7c106ad8-d958-459c-99b7-46d092a178c7", myParameters, "МСК_Класс арматуры текст"),
+					m.SharedParameterFromGUIDName("334ccf69-6722-4ad2-95e1-a11c3e5ee322", myParameters, "МСК_Марка В"),
+					m.SharedParameterFromGUIDName("b1d55c3a-7202-47fb-8593-a22cc05502e3", myParameters, "МСК_Водонепроницаемость W"),
+					m.SharedParameterFromGUIDName("a6669024-a5bc-4323-bfaa-651492c9de6c", myParameters, "МСК_Морозостойкость F"),
+					m.SharedParameterFromGUIDName("d7e61577-6b6f-4e94-9c31-af1cd8020bb7", myParameters, "МСК_Обозначение материал")
+				};
 				sb.Append("М_КР_01.1.1_Таблица для заполнения параметров фундаментов (кроме плитных, общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 
-	        * М_КР_01.2.1_Таблица для заполнения параметров фундаментов (плитных, общая)
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_StructuralFoundation).Where(x => x.Location != null).Where(x => x.Name.Contains("лита")).ToList();
+	        // М_КР_01.2.1_Таблица для заполнения параметров фундаментов (плитных, общая)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralFoundation).WhereElementIsNotElementType().Where(x => x.Name.Contains("лита")).ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										"Тип",
-										"МСК_Код по классификатору",
-										"МСК_Метод изготовления",
-										"МСК_Уровень ответственности",
-										"МСК_Расход арматуры",
-										"МСК_Защитный слой 1",
-										"МСК_Назначение",
-										"МСК_Наименование",
-										"МСК_Марка",
-										"МСК_Обозначение",
-										"МСК_Код материала",
-										"МСК_Материал",
-										"МСК_С подколонником",
-										"МСК_Класс арматуры текст",
-										"МСК_Марка В",
-										"МСК_Водонепроницаемость W",
-										"МСК_Морозостойкость F",
-										"МСК_Обозначение материал"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("fb118351-20b2-4f02-bd2c-99b27abaf8b2", myParameters, "МСК_Метод изготовления"),
+					m.SharedParameterFromGUIDName("96588d70-4bff-4014-8058-048eeba2234b", myParameters, "МСК_Уровень ответственности"),
+					m.SharedParameterFromGUIDName("266a965f-d878-4a4a-baf5-f4a5cdcd69fd", myParameters, "МСК_Расход арматуры"),
+					m.SharedParameterFromGUIDName("7b89dfac-4fea-43ab-b372-1d076b4624af", myParameters, "МСК_Защитный слой 1"),
+					m.SharedParameterFromGUIDName("71769132-b752-4452-9cce-b9fc8ddac241", myParameters, "МСК_Назначение"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("0301c4f6-cfa3-44ae-97ee-9c917b9f308c", myParameters, "МСК_С подколонником"),
+					m.SharedParameterFromGUIDName("7c106ad8-d958-459c-99b7-46d092a178c7", myParameters, "МСК_Класс арматуры текст"),
+					m.SharedParameterFromGUIDName("334ccf69-6722-4ad2-95e1-a11c3e5ee322", myParameters, "МСК_Марка В"),
+					m.SharedParameterFromGUIDName("b1d55c3a-7202-47fb-8593-a22cc05502e3", myParameters, "МСК_Водонепроницаемость W"),
+					m.SharedParameterFromGUIDName("a6669024-a5bc-4323-bfaa-651492c9de6c", myParameters, "МСК_Морозостойкость F"),
+					m.SharedParameterFromGUIDName("d7e61577-6b6f-4e94-9c31-af1cd8020bb7", myParameters, "МСК_Обозначение материал")
+				};
 				sb.Append("М_КР_01.2.1_Таблица для заполнения параметров фундаментов (плитных, общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 
-	         * М_КР_01.3.1_Таблица для заполнения параметров свай (общая) (разные категории)
-
-			elements = new FilteredElementCollector(document).OfClass(typeof(FamilyInstance))
+	        // М_КР_01.3.1_Таблица для заполнения параметров свай (общая) (разные категории)
+			elements = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance))
 				.Where(x => x.Category.CategoryType == CategoryType.Model)
 				.Where(x => x.Category.Name != "Линии")
 				.Where(x => x.Category.Name != "Элементы узлов")
@@ -215,304 +212,293 @@
 			if (elements != null)
 			{
 				string[] pSet = {
-										"Тип",
-										"МСК_Код по классификатору",
-										"Категория",
-										"Семейство",
-										"МСК_Метод изготовления",
-										"МСК_Уровень ответственности",
-										"МСК_Расход арматуры",
-										"МСК_Защитный слой 1",
-										"МСК_Защитный слой 2",
-										"МСК_Способ погружения",
-										"МСК_Наименование",
-										"МСК_Марка",
-										"МСК_Обозначение",
-										"МСК_Назначение",
-										"МСК_Код материала",
-										"МСК_Материал",
-										"МСК_Класс арматуры текст",
-										"МСК_Марка В",
-										"МСК_Водонепроницаемость W",
-										"МСК_Морозостойкость F",
-										"МСК_Плотность",
-										"МСК_Обозначение материал"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Категория",
+					"Семейство",
+					m.SharedParameterFromGUIDName("fb118351-20b2-4f02-bd2c-99b27abaf8b2", myParameters, "МСК_Метод изготовления"),
+					m.SharedParameterFromGUIDName("96588d70-4bff-4014-8058-048eeba2234b", myParameters, "МСК_Уровень ответственности"),
+					m.SharedParameterFromGUIDName("266a965f-d878-4a4a-baf5-f4a5cdcd69fd", myParameters, "МСК_Расход арматуры"),
+					m.SharedParameterFromGUIDName("7b89dfac-4fea-43ab-b372-1d076b4624af", myParameters, "МСК_Защитный слой 1"),
+					m.SharedParameterFromGUIDName("0852d2c0-86ad-4a0c-bb43-03b2949d3a81", myParameters, "МСК_Защитный слой 2"),
+					m.SharedParameterFromGUIDName("a4efaeb3-40d1-425b-8c3e-01da4dc09871", myParameters, "МСК_Способ погружения"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("71769132-b752-4452-9cce-b9fc8ddac241", myParameters, "МСК_Назначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("7c106ad8-d958-459c-99b7-46d092a178c7", myParameters, "МСК_Класс арматуры текст"),
+					m.SharedParameterFromGUIDName("334ccf69-6722-4ad2-95e1-a11c3e5ee322", myParameters, "МСК_Марка В"),
+					m.SharedParameterFromGUIDName("b1d55c3a-7202-47fb-8593-a22cc05502e3", myParameters, "МСК_Водонепроницаемость W"),
+					m.SharedParameterFromGUIDName("a6669024-a5bc-4323-bfaa-651492c9de6c", myParameters, "МСК_Морозостойкость F"),
+					m.SharedParameterFromGUIDName("321c229b-b3a5-4a47-93c1-caeedae09bf3", myParameters, "МСК_Плотность"),
+					m.SharedParameterFromGUIDName("d7e61577-6b6f-4e94-9c31-af1cd8020bb7", myParameters, "МСК_Обозначение материал")
+				};
 
 				sb.Append("М_КР_01.3.1_Таблица для заполнения параметров свай (общая) (разные категории)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParametersWCatNameWFamily(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParametersWCatNameWFamily(doc, pSet, elements));
 			}
 
 
-	         * М_КР_02.1_Таблица для заполнения параметров стен (общая)
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Walls).Where(x => x.Location != null).ToList();
+	        // М_КР_02.1_Таблица для заполнения параметров стен (общая)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Walls).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										"Тип",
-										"МСК_Код по классификатору",
-										"МСК_Метод изготовления",
-										"МСК_Уровень ответственности",
-										"МСК_Расход арматуры",
-										"МСК_Защитный слой 1",
-										"МСК_Защитный слой 2",
-										"МСК_Наименование",
-										"МСК_Марка",
-										"МСК_Обозначение",
-										"МСК_Код материала",
-										"МСК_Материал",
-										"МСК_Класс арматуры текст",
-										"МСК_Марка В",
-										"МСК_Водонепроницаемость W",
-										"МСК_Морозостойкость F",
-										"МСК_Обозначение материал"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("fb118351-20b2-4f02-bd2c-99b27abaf8b2", myParameters, "МСК_Метод изготовления"),
+					m.SharedParameterFromGUIDName("96588d70-4bff-4014-8058-048eeba2234b", myParameters, "МСК_Уровень ответственности"),
+					m.SharedParameterFromGUIDName("266a965f-d878-4a4a-baf5-f4a5cdcd69fd", myParameters, "МСК_Расход арматуры"),
+					m.SharedParameterFromGUIDName("7b89dfac-4fea-43ab-b372-1d076b4624af", myParameters, "МСК_Защитный слой 1"),
+					m.SharedParameterFromGUIDName("0852d2c0-86ad-4a0c-bb43-03b2949d3a81", myParameters, "МСК_Защитный слой 2"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("7c106ad8-d958-459c-99b7-46d092a178c7", myParameters, "МСК_Класс арматуры текст"),
+					m.SharedParameterFromGUIDName("334ccf69-6722-4ad2-95e1-a11c3e5ee322", myParameters, "МСК_Марка В"),
+					m.SharedParameterFromGUIDName("b1d55c3a-7202-47fb-8593-a22cc05502e3", myParameters, "МСК_Водонепроницаемость W"),
+					m.SharedParameterFromGUIDName("a6669024-a5bc-4323-bfaa-651492c9de6c", myParameters, "МСК_Морозостойкость F"),
+					m.SharedParameterFromGUIDName("d7e61577-6b6f-4e94-9c31-af1cd8020bb7", myParameters, "МСК_Обозначение материал")
+				};
 				sb.Append("М_КР_02.1_Таблица для заполнения параметров стен (общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 
 
-	         * М_КР_03.1_Таблица для заполнения параметров армирования перекрытий (общая)
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Floors).Where(x => x.Location != null).ToList();
+	        // М_КР_03.1_Таблица для заполнения параметров армирования перекрытий (общая)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Floors).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										"Тип",
-										"МСК_Код по классификатору",
-										"МСК_Метод изготовления",
-										"МСК_Уровень ответственности",
-										"МСК_Расход арматуры",
-										"МСК_Защитный слой 1",
-										"МСК_Назначение",
-										"МСК_Наименование",
-										"МСК_Марка",
-										"МСК_Обозначение",
-										"МСК_Код материала",
-										"МСК_Материал",
-										"МСК_Класс арматуры текст",
-										"МСК_Марка В",
-										"МСК_Водонепроницаемость W",
-										"МСК_Морозостойкость F",
-										"МСК_Обозначение материал"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("fb118351-20b2-4f02-bd2c-99b27abaf8b2", myParameters, "МСК_Метод изготовления"),
+					m.SharedParameterFromGUIDName("96588d70-4bff-4014-8058-048eeba2234b", myParameters, "МСК_Уровень ответственности"),
+					m.SharedParameterFromGUIDName("266a965f-d878-4a4a-baf5-f4a5cdcd69fd", myParameters, "МСК_Расход арматуры"),
+					m.SharedParameterFromGUIDName("7b89dfac-4fea-43ab-b372-1d076b4624af", myParameters, "МСК_Защитный слой 1"),
+					m.SharedParameterFromGUIDName("71769132-b752-4452-9cce-b9fc8ddac241", myParameters, "МСК_Назначение"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("7c106ad8-d958-459c-99b7-46d092a178c7", myParameters, "МСК_Класс арматуры текст"),
+					m.SharedParameterFromGUIDName("334ccf69-6722-4ad2-95e1-a11c3e5ee322", myParameters, "МСК_Марка В"),
+					m.SharedParameterFromGUIDName("b1d55c3a-7202-47fb-8593-a22cc05502e3", myParameters, "МСК_Водонепроницаемость W"),
+					m.SharedParameterFromGUIDName("a6669024-a5bc-4323-bfaa-651492c9de6c", myParameters, "МСК_Морозостойкость F"),
+					m.SharedParameterFromGUIDName("d7e61577-6b6f-4e94-9c31-af1cd8020bb7", myParameters, "МСК_Обозначение материал")
+				};
 				sb.Append("М_КР_03.1_Таблица для заполнения параметров армирования перекрытий (общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 
-	         * М_КР_04.1_Таблица для заполнения параметров колонн (стальных)
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_StructuralColumns).Where(x => x.Location != null)
+	        // М_КР_04.1_Таблица для заполнения параметров колонн (стальных)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralColumns).WhereElementIsNotElementType()
 				.Where(x => !x.Name.Contains("онолит")).Where(x => !x.Name.Contains("ж.б")).Where(x => !x.Name.Contains("Ж.б")).ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										"Тип",
-										"МСК_Код по классификатору",
-										"МСК_Метод изготовления",
-										"МСК_Наименование",
-										"МСК_Марка",
-										"МСК_Обозначение",
-										"МСК_Код материала",
-										"МСК_Материал"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("fb118351-20b2-4f02-bd2c-99b27abaf8b2", myParameters, "МСК_Метод изготовления"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал")
+				};
 				sb.Append("М_КР_04.1_Таблица для заполнения параметров колонн (стальных)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 
-	         * М_КР_04.2.1_Таблица для заполнения параметров колонн (железобетонных, общая)
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_StructuralColumns).Where(x => x.Location != null)
+	        // М_КР_04.2.1_Таблица для заполнения параметров колонн (железобетонных, общая)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralColumns).WhereElementIsNotElementType()
 				.Where(x => (x.Name.Contains("онолит") || x.Name.Contains("ж.б") || x.Name.Contains("Ж.б"))).ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Тип",
-										 "МСК_Код по классификатору",
-										 "МСК_Метод изготовления",
-										 "МСК_Уровень ответственности",
-										 "МСК_Расход арматуры",
-										 "МСК_Защитный слой 1",
-										 "МСК_Класс арматуры текст",
-										 "МСК_Назначение",
-										 "МСК_Марка",
-										 "МСК_Обозначение",
-										 "МСК_Код материала",
-										 "МСК_Материал",
-										 "МСК_Марка В",
-										 "МСК_Водонепроницаемость W",
-										 "МСК_Морозостойкость F",
-										 "МСК_Обозначение материал"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("fb118351-20b2-4f02-bd2c-99b27abaf8b2", myParameters, "МСК_Метод изготовления"),
+					m.SharedParameterFromGUIDName("96588d70-4bff-4014-8058-048eeba2234b", myParameters, "МСК_Уровень ответственности"),
+					m.SharedParameterFromGUIDName("266a965f-d878-4a4a-baf5-f4a5cdcd69fd", myParameters, "МСК_Расход арматуры"),
+					m.SharedParameterFromGUIDName("7b89dfac-4fea-43ab-b372-1d076b4624af", myParameters, "МСК_Защитный слой 1"),
+					m.SharedParameterFromGUIDName("7c106ad8-d958-459c-99b7-46d092a178c7", myParameters, "МСК_Класс арматуры текст"),
+					m.SharedParameterFromGUIDName("71769132-b752-4452-9cce-b9fc8ddac241", myParameters, "МСК_Назначение"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("334ccf69-6722-4ad2-95e1-a11c3e5ee322", myParameters, "МСК_Марка В"),
+					m.SharedParameterFromGUIDName("b1d55c3a-7202-47fb-8593-a22cc05502e3", myParameters, "МСК_Водонепроницаемость W"),
+					m.SharedParameterFromGUIDName("a6669024-a5bc-4323-bfaa-651492c9de6c", myParameters, "МСК_Морозостойкость F"),
+					m.SharedParameterFromGUIDName("d7e61577-6b6f-4e94-9c31-af1cd8020bb7", myParameters, "МСК_Обозначение материал")
+				};
 				sb.Append("М_КР_04.2.1_Таблица для заполнения параметров колонн (железобетонных, общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 
-	         * М_КР_05.1_Таблица для заполнения параметров балок (стальных)
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_StructuralFraming).Where(x => x.Location != null)
+	        // М_КР_05.1_Таблица для заполнения параметров балок (стальных)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralFraming).WhereElementIsNotElementType()
 				.Where(x => !x.Name.Contains("онолит")).Where(x => !x.Name.Contains("ж.б")).Where(x => !x.Name.Contains("Ж.б")).ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Тип",
-										 "МСК_Код по классификатору",
-										 "МСК_Метод изготовления",
-										 "МСК_Наименование",
-										 "МСК_Назначение",
-										 "МСК_Марка",
-										 "МСК_Обозначение",
-										 "МСК_Код материала",
-										 "МСК_Материал"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("fb118351-20b2-4f02-bd2c-99b27abaf8b2", myParameters, "МСК_Метод изготовления"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("71769132-b752-4452-9cce-b9fc8ddac241", myParameters, "МСК_Назначение"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал")
+				};
 				sb.Append("М_КР_05.1_Таблица для заполнения параметров балок (стальных)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 
-	         * М_КР_05.2.1_Таблица для заполнения параметров балок (железобетонных, общая)
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_StructuralFraming).Where(x => x.Location != null)
+	        // М_КР_05.2.1_Таблица для заполнения параметров балок (железобетонных, общая)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralFraming).WhereElementIsNotElementType()
 				.Where(x => (x.Name.Contains("онолит") || x.Name.Contains("ж.б") || x.Name.Contains("Ж.б"))).ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Тип",
-										 "МСК_Код по классификатору",
-										 "МСК_Метод изготовления",
-										 "МСК_Расход арматуры",
-										 "МСК_Защитный слой 1",
-										 "МСК_Класс арматуры текст",
-										 "МСК_Наименование",
-										 "МСК_Назначение",
-										 "МСК_Марка",
-										 "МСК_Обозначение",
-										 "МСК_Код материала",
-										 "МСК_Материал",
-										 "МСК_Марка В",
-										 "МСК_Водонепроницаемость W",
-										 "МСК_Морозостойкость F",
-										 "МСК_Обозначение материал"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("fb118351-20b2-4f02-bd2c-99b27abaf8b2", myParameters, "МСК_Метод изготовления"),
+					m.SharedParameterFromGUIDName("266a965f-d878-4a4a-baf5-f4a5cdcd69fd", myParameters, "МСК_Расход арматуры"),
+					m.SharedParameterFromGUIDName("7b89dfac-4fea-43ab-b372-1d076b4624af", myParameters, "МСК_Защитный слой 1"),
+					m.SharedParameterFromGUIDName("7c106ad8-d958-459c-99b7-46d092a178c7", myParameters, "МСК_Класс арматуры текст"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("71769132-b752-4452-9cce-b9fc8ddac241", myParameters, "МСК_Назначение"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("334ccf69-6722-4ad2-95e1-a11c3e5ee322", myParameters, "МСК_Марка В"),
+					m.SharedParameterFromGUIDName("b1d55c3a-7202-47fb-8593-a22cc05502e3", myParameters, "МСК_Водонепроницаемость W"),
+					m.SharedParameterFromGUIDName("a6669024-a5bc-4323-bfaa-651492c9de6c", myParameters, "МСК_Морозостойкость F"),
+					m.SharedParameterFromGUIDName("d7e61577-6b6f-4e94-9c31-af1cd8020bb7", myParameters, "МСК_Обозначение материал")
+				};
 				sb.Append("М_КР_05.2.1_Таблица для заполнения параметров балок (железобетонных, общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 
-	         * М_КР_06.1.1_Таблица для заполнения параметров лестниц (общая)
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Stairs).Where(x => x.Location != null).ToList();
+	        // М_КР_06.1.1_Таблица для заполнения параметров лестниц (общая)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Stairs).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Тип",
-										 "МСК_Код по классификатору",
-										 "МСК_Признак несущей конструкции",
-										 "МСК_Наружный",
-										 "МСК_Наименование",
-										 "МСК_Марка",
-										 "МСК_Обозначение",
-										 "МСК_Код материала",
-										 "МСК_Материал",
-										 "МСК_Секция"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("886ac3f7-ee92-4498-bd58-8248e37001e6", myParameters, "МСК_Признак несущей конструкции"),
+					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция")
+				};
 				sb.Append("М_КР_06.1.1_Таблица для заполнения параметров лестниц (общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 
-	         * М_КР_06.2.1_Таблица для заполнения параметров лестниц (марши, общая)
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_StairsRuns).Where(x => x.Location != null).ToList();
+	        // М_КР_06.2.1_Таблица для заполнения параметров лестниц (марши, общая)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StairsRuns).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Тип",
-										 "МСК_Код по классификатору",
-										 "МСК_Признак несущей конструкции",
-										 "МСК_Наружный",
-										 "МСК_Наименование",
-										 "МСК_Марка",
-										 "МСК_Обозначение",
-										 "МСК_Код материала",
-										 "МСК_Материал",
-										 "МСК_Секция"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("886ac3f7-ee92-4498-bd58-8248e37001e6", myParameters, "МСК_Признак несущей конструкции"),
+					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция")
+				};
 				sb.Append("М_КР_06.2.1_Таблица для заполнения параметров лестниц (марши, общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 
-	         * М_КР_07.1_Таблица для заполнения параметров пандусов (общая)
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Ramps).Where(x => x.Location != null).ToList();
+	        // М_КР_07.1_Таблица для заполнения параметров пандусов (общая)
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Ramps).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Тип",
-										 "МСК_Код по классификатору",
-										 "МСК_Наружный",
-										 "МСК_Наименование",
-										 "МСК_Марка",
-										 "МСК_Обозначение",
-										 "МСК_Код материала",
-										 "МСК_Материал",
-										 "МСК_Секция"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
+					m.SharedParameterFromGUIDName("1eaa8759-8cc8-44f3-9f69-08b454a09cc1", myParameters, "МСК_Код материала"),
+					m.SharedParameterFromGUIDName("8b5e61a2-b091-491c-8092-0b01a55d4f45", myParameters, "МСК_Материал"),
+					m.SharedParameterFromGUIDName("ad2dcb70-c648-46da-b8cc-00c088dd1653", myParameters, "МСК_Секция")
+				};
 				sb.Append("М_КР_07.1_Таблица для заполнения параметров пандусов (общая)\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 
-	         * М_КР_08_Таблица для заполнения параметров сборок
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Assemblies).Where(x => x.Location != null).ToList();
+	        // М_КР_08_Таблица для заполнения параметров сборок
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Assemblies).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Тип",
-										 "МСК_Код по классификатору",
-										 "МСК_Наименование",
-										 "МСК_Наружный",
-										 "МСК_Метод изготовления",
-										 "МСК_Марка",
-										 "МСК_Обозначение"
-					};
+					"Тип",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
+					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
+					m.SharedParameterFromGUIDName("fb118351-20b2-4f02-bd2c-99b27abaf8b2", myParameters, "МСК_Метод изготовления"),
+					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
+					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение")
+				};
 				sb.Append("М_КР_08_Таблица для заполнения параметров сборок\n");
-				sb.Append(RowHeader(pSet));
-				sb.Append(RowElementsParameters(document, pSet, elements, noData, noParameter));
+				sb.Append(m.RowHeader(pSet));
+				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 
 			}
 
 
-	         * М_КР(КЛ)_05_Таблица для классификации ограждений
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_StairsRailing).ToList();
+	        // М_КР(КЛ)_05_Таблица для классификации ограждений
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StairsRailing).ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Семейство",
-										 "Тип",
-										 "Ключевая пометка",
-										 "МСК_Код по классификатору"
-					};
+					"Семейство",
+					"Тип",
+					"Ключевая пометка",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору")
+				};
 				sb.Append("М_КР(КЛ)_05_Таблица для классификации ограждений\n");
-				sb.Append(RowHeader(pSet));
+				sb.Append(m.RowHeader(pSet));
 				foreach (Element el in elements)
 				{
 					try
@@ -524,12 +510,12 @@
 						}
 						else
 						{
-							FamilySymbol fis = document.GetElement(fi.GetTypeId()) as FamilySymbol;
+							FamilySymbol fis = doc.GetElement(fi.GetTypeId()) as FamilySymbol;
 							sb.Append(fis.FamilyName).Append("\t");
 							sb.Append(el.Name).Append("\t");
 							sb.Append("?\t");
-							string result = GetParameterValue(document, el, "МСК_Код по классификатору", noData, noParameter);
-							MSKCounter("МСК_Код по классификатору", result, noData, noParameter);
+							string result = m.GetParameterValue(doc, el, "МСК_Код по классификатору");
+							m.MSKCounter("МСК_Код по классификатору", result);
 							sb.Append(result).Append("\t");
 							sb.Append("\n");
 						}
@@ -544,19 +530,18 @@
 			}
 
 
-	         * М_КР(КЛ)_07_Таблица для классификации форм
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Mass).ToList();
+	        // М_КР(КЛ)_07_Таблица для классификации форм
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Mass).ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Семейство",
-										 "Тип",
-										 "Ключевая пометка",
-										 "МСК_Код по классификатору"
-					};
+					"Семейство",
+					"Тип",
+					"Ключевая пометка",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору")
+				};
 				sb.Append("М_КР(КЛ)_07_Таблица для классификации форм\n");
-				sb.Append(RowHeader(pSet));
+				sb.Append(m.RowHeader(pSet));
 				foreach (Element el in elements)
 				{
 					try
@@ -568,12 +553,12 @@
 						}
 						else
 						{
-							FamilySymbol fis = document.GetElement(fi.GetTypeId()) as FamilySymbol;
+							FamilySymbol fis = doc.GetElement(fi.GetTypeId()) as FamilySymbol;
 							sb.Append(fis.FamilyName).Append("\t");
 							sb.Append(el.Name).Append("\t");
 							sb.Append("?\t");
-							string result = GetParameterValue(document, el, "МСК_Код по классификатору", noData, noParameter);
-							MSKCounter("МСК_Код по классификатору", result, noData, noParameter);
+							string result = m.GetParameterValue(doc, el, "МСК_Код по классификатору");
+							m.MSKCounter("МСК_Код по классификатору", result);
 							sb.Append(result).Append("\t");
 							sb.Append("\n");
 						}
@@ -588,19 +573,18 @@
 			}
 
 
-	         * М_КР(КЛ)_08_Таблица для классификации крыш
-
-			elements = new FilteredElementCollector(document).OfCategory(BuiltInCategory.OST_Roofs).ToList();
+	        // М_КР(КЛ)_08_Таблица для классификации крыш
+			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Roofs).ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Семейство",
-										 "Тип",
-										 "Ключевая пометка",
-										 "МСК_Код по классификатору"
-					};
+					"Семейство",
+					"Тип",
+					"Ключевая пометка",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору")
+				};
 				sb.Append("М_КР(КЛ)_08_Таблица для классификации крыш\n");
-				sb.Append(RowHeader(pSet));
+				sb.Append(m.RowHeader(pSet));
 				foreach (Element el in elements)
 				{
 					try
@@ -612,12 +596,12 @@
 						}
 						else
 						{
-							FamilySymbol fis = document.GetElement(fi.GetTypeId()) as FamilySymbol;
+							FamilySymbol fis = doc.GetElement(fi.GetTypeId()) as FamilySymbol;
 							sb.Append(fis.FamilyName).Append("\t");
 							sb.Append(el.Name).Append("\t");
 							sb.Append("?\t");
-							string result = GetParameterValue(document, el, "МСК_Код по классификатору", noData, noParameter);
-							MSKCounter("МСК_Код по классификатору", result, noData, noParameter);
+							string result = m.GetParameterValue(doc, el, "МСК_Код по классификатору");
+							m.MSKCounter("МСК_Код по классификатору", result);
 							sb.Append(result).Append("\t");
 							sb.Append("\n");
 						}
@@ -632,9 +616,8 @@
 			}
 
 
-	         * М_КР(КЛ)_09_Таблица для классификации остальных категорий
-
-			elements = new FilteredElementCollector(document).OfClass(typeof(FamilyInstance))
+	        // М_КР(КЛ)_09_Таблица для классификации остальных категорий
+			elements = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance))
 				.Where(x => x.Category.CategoryType == CategoryType.Model)
 				.Where(x => x.Category.Name != "Линии")
 				.Where(x => x.Category.Name != "Элементы узлов")
@@ -648,15 +631,15 @@
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Категория",
-										 "Семейство",
-										 "Тип",
-										 "Ключевая пометка",
-										 "МСК_Код по классификатору"
-					};
+					"Категория",
+					"Семейство",
+					"Тип",
+					"Ключевая пометка",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору")
+				};
 
 				sb.Append("М_КР(КЛ)_09_Таблица для классификации остальных категорий\n");
-				sb.Append(RowHeader(pSet));
+				sb.Append(m.RowHeader(pSet));
 				// сперва закинем элементы массива в строки, для последующей работы с ними
 				foreach (Element el in elements)
 				{
@@ -671,15 +654,15 @@
 						else
 						{
 							string str = "";
-							FamilySymbol fis = document.GetElement(fi.GetTypeId()) as FamilySymbol;
+							FamilySymbol fis = doc.GetElement(fi.GetTypeId()) as FamilySymbol;
 							//							sb.Append(fi.Category.Name).Append("\t");
 							//							sb.Append(fis.FamilyName).Append("\t");
 							//							sb.Append(el.Name).Append("\t");
 							//							sb.Append("?\t");
-							//							sb.Append(getParameterValue(doc,el, "МСК_Код по классификатору", noData, noParameter)).Append("\t");
+							//							sb.Append(getParameterValue(doc,el, m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"), noData, noParameter)).Append("\t");
 							//							sb.Append("\n");
-							string result = GetParameterValue(document, el, "МСК_Код по классификатору", noData, noParameter);
-							MSKCounter("МСК_Код по классификатору", result, noData, noParameter);
+							string result = m.GetParameterValue(doc, el, "МСК_Код по классификатору");
+							m.MSKCounter("МСК_Код по классификатору", result);
 							str += fi.Category.Name + "\t" + fis.FamilyName + "\t" + el.Name + "\t" + "?\t" + result + "\t";
 							elementsInStrings.Add(str);
 						}
@@ -696,15 +679,14 @@
 				foreach (string str in distinctElements)
 				{
 					if (str.Contains(noParameter))
-						countAll += 1;
+						m.countAll += 1;
 
 					if (str.Contains(noData))
-						countAll += 1;
+						m.countAll += 1;
 
 					sb.Append(str).Append("\n");
 				}
 			}
-			*/
 
 			#region Заголовок файла
 			StringBuilder sbStart = new StringBuilder();
@@ -732,16 +714,16 @@
 
             sbResult.Append(sbStart.ToString()).Append(sb.ToString());
 
-            #region Завершение и Условные обозначения
-            StringBuilder sbEnd = new StringBuilder();
-            sbEnd.Append("\n\nУсловные обозначения: \n");
-            sbEnd.Append("!!(_) \t - не добавлен в модель данный общий параметр\n");
-            sbEnd.Append(noParameter + "\t - не добавлен в модель общий параметр\n");
-            sbEnd.Append(noData + "\t - значение параметра не заполнено\n");
-            sbEnd.Append(noCategory + "\t - не назначена категория, связанная с этим общим параметром\n");
-            #endregion
+			#region Завершение и Условные обозначения
+			StringBuilder sbEnd = new StringBuilder();
+			sbEnd.Append("\n\nУсловные обозначения: \n");
+			sbEnd.Append("!!(_) \t - не добавлен в модель общий параметр\n");
+			sbEnd.Append(noData + "\t - значение параметра не заполнено\n");
+			sbEnd.Append(noParameter + "\t - не добавлен в модель общий параметр в экземпляре\n");
+			sbEnd.Append(noCategory + "\t - не назначена категория, связанная с этим общим параметром\n");
+			#endregion
 
-            sbResult.Append(sbEnd.ToString());
+			sbResult.Append(sbEnd.ToString());
 
             //string dirPath = @outputFolder + @"\"; // для динамо
             if (!Directory.Exists(m.workingDir))

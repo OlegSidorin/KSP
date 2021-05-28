@@ -376,28 +376,28 @@
                             if (currentString == noParameter)
                             {
                                 sheet.Cells[currentCell].Style.Font.Bold = true;
-                                sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.LightGray;
-                                sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Red);
                                 sheet.Cells[currentCell].Style.Font.Color.SetColor(System.Drawing.Color.DarkRed);
+                                sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.LightGray;
+                                sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightPink);
                             }
                             if (currentString == noCategory)
                             {
                                 sheet.Cells[currentCell].Style.Font.Bold = true;
-                                sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.LightGray;
-                                sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Azure);
                                 sheet.Cells[currentCell].Style.Font.Color.SetColor(System.Drawing.Color.DarkRed);
+                                sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.LightGray;
+                                sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightPink);
                             }
                             if (currentString.Contains("!!"))
                             {
                                 sheet.Cells[currentCell].Style.Font.Bold = true;
+                                sheet.Cells[currentCell].Style.Font.Color.SetColor(System.Drawing.Color.DarkRed);
                                 sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                                 sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Yellow);
-                                sheet.Cells[currentCell].Style.Font.Color.SetColor(System.Drawing.Color.DarkRed);
                             }
                             if (currentString.Contains("МСК_Код по классификатору"))
                             {
-                                sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                                sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Cornsilk);
+                                sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.LightGray;
+                                sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGreen);
                             }
                         }
                         csb.Clear();
