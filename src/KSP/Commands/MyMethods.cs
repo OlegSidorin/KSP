@@ -9,11 +9,12 @@
     using System.Linq;
     using System.Reflection;
     using OfficeOpenXml;
+    using System.Diagnostics;
 
     public class MyMethods
     {
         public string user = @"C:\Users\" + Environment.UserName.ToString();
-        public string workingDir = @"C:\Users\" + Environment.UserName.ToString() + @"\Documents\TEST\";
+        public string workingDir = @"C:\Users\" + Environment.UserName.ToString() + @"\Documents\TESTS\";
         public string noData = " [НЗ] ";
         public string noParameter = " [НП] ";
         public string noCategory = " [НК] ";
@@ -485,6 +486,23 @@
             if (fileName.Contains("-BIM"))
                 cropFileName = cropFileName.Substring(0, cropFileName.Length - 4);
             return cropFileName;
+        }
+
+        public void OpenFolder(string folderPath)
+        {
+            if (Directory.Exists(folderPath))
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    Arguments = folderPath,
+                    FileName = "explorer.exe"
+                };
+                Process.Start(startInfo);
+            }
+            else
+            {
+                TaskDialog.Show("Warning", String.Format("{0} не существует", folderPath));
+            }
         }
     }
 }

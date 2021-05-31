@@ -11,7 +11,7 @@
 
 	[Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
 	[Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
-	class CheckIOSGuidCommand : IExternalCommand
+	class CheckMSKIOSwGCommand : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elementSet)
         {
@@ -62,13 +62,27 @@
                 //sb = sb.Append("\n<" + e.Key + ">").Append("(" + e.Value.Name + ")").Append("-" + e.Value.isShared).Append("-" + e.Value.isInstance);
             }
 
-            TaskDialog.Show("Warning", sb.ToString());
-            #endregion
+            //TaskDialog.Show("Warning", sb.ToString());
+			#endregion
 
+			string str12 = "";
+			BindingMap bindings = doc.ParameterBindings;
+			int n = bindings.Size;
+			if (0 < n)
+			{
+				DefinitionBindingMapIterator it = bindings.ForwardIterator();
+				while (it.MoveNext())
+				{
+					Definition d = it.Key as Definition;
+					Binding b = it.Current as Binding;
+					str12 += "\n" + d.Name + "<" + d.ParameterType + ">" + "-" + b.ToString() + "-" + b.GetType().Name;
+				}
+			}
 
+			TaskDialog.Show("Warning", str12);
 
-            // М_ИОС_Таблица для ДОБАВЛЕНИЯ параметров модели
-            IList<ProjectInfo> pInfo = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).Cast<ProjectInfo>().ToList();
+			// М_ИОС_Таблица для ДОБАВЛЕНИЯ параметров модели
+			IList<ProjectInfo> pInfo = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).Cast<ProjectInfo>().ToList();
 			if (pInfo != null)
 			{
 				string[] pSet = {
@@ -623,6 +637,7 @@
 
 
             TaskDialog.Show("Final", "готово!");
+			m.OpenFolder(m.workingDir);
             return Result.Succeeded;
         }
     }

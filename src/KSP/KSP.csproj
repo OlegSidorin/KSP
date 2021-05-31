@@ -81,13 +81,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\BasePointsCommand.cs" />
-    <Compile Include="Commands\CheckARGuidCommand.cs" />
+    <Compile Include="Commands\CheckMSKARwGCommand.cs" />
     <Compile Include="Commands\CheckCodCommand.cs" />
-    <Compile Include="Commands\CheckIOSGuidCommand.cs" />
-    <Compile Include="Commands\CheckKRGuidCommand.cs" />
-    <Compile Include="Commands\CheckMSKArCommand.cs" />
-    <Compile Include="Commands\CheckMSKIosCommand.cs" />
-    <Compile Include="Commands\CheckMSKKrCommand.cs" />
+    <Compile Include="Commands\CheckMSKIOSwGCommand.cs" />
+    <Compile Include="Commands\CheckMSKKRwGCommand.cs" />
+    <Compile Include="Commands\CheckMSKARCommand.cs" />
+    <Compile Include="Commands\CheckMSKIOSCommand.cs" />
+    <Compile Include="Commands\CheckMSKKRCommand.cs" />
     <Compile Include="Commands\CommonMethods.cs" />
     <Compile Include="Commands\CreateBIM360ViewCommand.cs" />
     <Compile Include="Commands\SharedParameterFromGUID.cs" />

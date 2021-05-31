@@ -11,7 +11,7 @@
 
     [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
     [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
-    class CheckARGuidCommand : IExternalCommand
+    class CheckMSKARwGCommand : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elementSet)
         {
@@ -1099,7 +1099,8 @@
 
 
             TaskDialog.Show("Final", "готово!");
-            return Result.Succeeded;
+			m.OpenFolder(m.workingDir);
+			return Result.Succeeded;
         }
 
        
