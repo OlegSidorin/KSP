@@ -68,7 +68,7 @@
 
             // М_АР_Таблица для ДОБАВЛЕНИЯ параметров модели
             IList<ProjectInfo> pInfo = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).Cast<ProjectInfo>().ToList();
-            MyParameter value = new MyParameter("", "", false, false);
+            MyParameter value = new MyParameter("", "", "", false, false);
             if (pInfo != null)
             {
                 string[] pSet = {
@@ -1079,7 +1079,8 @@
             StringBuilder sbEnd = new StringBuilder();
             sbEnd.Append("\n\nУсловные обозначения: \n");
             sbEnd.Append("!!(_) \t - не добавлен в модель общий параметр\n");
-            sbEnd.Append(noData + "\t - значение параметра не заполнено\n");
+			sbEnd.Append("??(_)" + "\t - есть параметр с таким именем, но он не из ФОП или из другого ФОП\n");
+			sbEnd.Append(noData + "\t - значение параметра не заполнено\n");
 			sbEnd.Append(noParameter + "\t - не добавлен в модель общий параметр в экземпляре\n");
 			sbEnd.Append(noCategory + "\t - не назначена категория, связанная с этим общим параметром\n");
             #endregion

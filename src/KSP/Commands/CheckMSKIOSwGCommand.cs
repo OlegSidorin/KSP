@@ -56,30 +56,45 @@
             #endregion
 
             #region показать все параметры, внедренные в проект
-            foreach (var e in myParameters)
-            {
-                sb = sb.Append("\n" + "<" + e.GuidValue + ">" + e.Name + "-" + e.isShared + "-" + e.isInstance);
-                //sb = sb.Append("\n<" + e.Key + ">").Append("(" + e.Value.Name + ")").Append("-" + e.Value.isShared).Append("-" + e.Value.isInstance);
-            }
+            //foreach (var e in myParameters)
+            //{
+            //    sb = sb.Append("\n" + "<" + e.GuidValue + ">" + e.Name + "-" + e.isShared + "-" + e.isInstance);
+            //    sb = sb.Append("\n<" + e.Key + ">").Append("(" + e.Value.Name + ")").Append("-" + e.Value.isShared).Append("-" + e.Value.isInstance);
+            //}
 
             //TaskDialog.Show("Warning", sb.ToString());
-			#endregion
+            #endregion
 
-			string str12 = "";
-			BindingMap bindings = doc.ParameterBindings;
-			int n = bindings.Size;
-			if (0 < n)
-			{
-				DefinitionBindingMapIterator it = bindings.ForwardIterator();
-				while (it.MoveNext())
-				{
-					Definition d = it.Key as Definition;
-					Binding b = it.Current as Binding;
-					str12 += "\n" + d.Name + "<" + d.ParameterType + ">" + "-" + b.ToString() + "-" + b.GetType().Name;
-				}
-			}
+   //         string str12 = "";
+			//foreach (var p in myParameters)
+   //         {
+			//	if (p.Name.Contains("Наименование"))
+			//		str12 += "\n" + p.Name + "\n  " + p.Id + "\n  <" + p.GuidValue + ">\n  " + p.isShared + "\n  " + p.isInstance + "\n";
+            //}
+            //IList<SharedParameterElement> speList = new FilteredElementCollector(doc).OfClass(typeof(SharedParameterElement)).Cast<SharedParameterElement>().ToList();
 
-			TaskDialog.Show("Warning", str12);
+            //BindingMap bindings = doc.ParameterBindings;
+            //int n = bindings.Size;
+            //if (0 < n)
+            //{
+            //	DefinitionBindingMapIterator it = bindings.ForwardIterator();
+            //	while (it.MoveNext())
+            //	{
+            //		Definition d = it.Key as Definition;
+            //		InternalDefinition id = it.Key as InternalDefinition;
+            //		Binding b = it.Current as Binding;
+            //		if (d.Name.Contains("_Наименование"))
+            //                 {
+            //			str12 += "\n" + d.Name + "<" + id.Id + ">" + "\n  par type:" + d.ParameterType + "\n  par group:" + d.ParameterGroup + "\n  unit type:" + d.UnitType + "\n  b type name:" + b.GetType().Name;
+
+            //		}
+
+            //	}
+            //}
+
+            //TaskDialog.Show("Warning", str12);
+
+
 
 			// М_ИОС_Таблица для ДОБАВЛЕНИЯ параметров модели
 			IList<ProjectInfo> pInfo = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).Cast<ProjectInfo>().ToList();
@@ -617,12 +632,13 @@
             StringBuilder sbEnd = new StringBuilder();
             sbEnd.Append("\n\nУсловные обозначения: \n");
             sbEnd.Append("!!(_) \t - не добавлен в модель общий параметр\n");
-            sbEnd.Append(noData + "\t - значение параметра не заполнено\n");
+			sbEnd.Append("??(_)" + "\t - есть параметр с таким именем, но он не из ФОП или из другого ФОП\n");
+			sbEnd.Append(noData + "\t - значение параметра не заполнено\n");
             sbEnd.Append(noParameter + "\t - не добавлен в модель общий параметр в экземпляре\n");
             sbEnd.Append(noCategory + "\t - не назначена категория, связанная с этим общим параметром\n");
-            #endregion
+			#endregion
 
-            sbResult.Append(sbEnd.ToString());
+			sbResult.Append(sbEnd.ToString());
 
             //string dirPath = @outputFolder + @"\"; // для динамо
             if (!Directory.Exists(m.workingDir))

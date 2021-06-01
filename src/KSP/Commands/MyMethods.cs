@@ -26,18 +26,24 @@
 
         public List<MyParameter> AllParameters(Document doc)
         {
-            List<MySharedParameter> mySharedParameters = new List<MySharedParameter>();
+            //List<MySharedParameter> mySharedParameters = new List<MySharedParameter>();
             var sharedParameters = new FilteredElementCollector(doc).OfClass(typeof(SharedParameterElement)).Cast<SharedParameterElement>().ToList();
-            foreach (var e in sharedParameters)
-            {
-                InternalDefinition iDef = e.GetDefinition();
-                Definition def = e.GetDefinition();
-                if (def != null)
-                {
-                    MySharedParameter msp = new MySharedParameter(e.GuidValue.ToString(), iDef.Name);
-                    mySharedParameters.Add(msp);
-                }
-            }
+            //var parameters = new FilteredElementCollector(doc).OfClass(typeof(ParameterElement)).Cast<ParameterElement>().ToList();
+
+            BindingMap bindingMap = doc.ParameterBindings;
+            int size = bindingMap.Size;
+
+
+            //foreach (var e in sharedParameters)
+            //{
+            //    InternalDefinition iDef = e.GetDefinition();
+            //    Definition def = e.GetDefinition();
+            //    if (def != null)
+            //    {
+            //        MySharedParameter msp = new MySharedParameter(e.GuidValue.ToString(), def.Name);
+            //        mySharedParameters.Add(msp);
+            //    }
+            //}
                 
             List<MyParameter> myParameters = new List<MyParameter>();
             BindingMap bindings = doc.ParameterBindings;
@@ -48,25 +54,33 @@
                 while (it.MoveNext())
                 {
                     Definition d = it.Key as Definition;
+                    InternalDefinition id = it.Key as InternalDefinition;
                     Binding b = it.Current as Binding;
                     MyParameter myParameter = 
-                        new MyParameter("", "name", false, true); // Name, isShared, isInstance
-                    if (d is InternalDefinition) 
-                        myParameter.Name = d.Name;
-                    else
-                        myParameter.Name += d.Name;
+                        new MyParameter("", "", "name", false, true); // Name, isShared, isInstance
+                    myParameter.Name = d.Name;
+                    myParameter.Id = id.Id.ToString();
                     if (b is InstanceBinding)
                         myParameter.isInstance = true;
                     else
                         myParameter.isInstance = false;
-                    foreach (var e in mySharedParameters)
+                    foreach (var sp in sharedParameters)
                     {
-                        if (myParameter.Name == e.Name)
+                        if (myParameter.Id == sp.Id.ToString())
                         {
                             myParameter.isShared = true;
-                            myParameter.GuidValue = e.GuidValue;
+                            myParameter.GuidValue = sp.GuidValue.ToString();
                         }   
                     }
+
+                    //foreach (var p in parameters)
+                    //{
+                    //    if (myParameter.Id == p.Id.ToString())
+                    //    {
+                    //        myParameter.isShared = false;
+                    //        myParameter.GuidValue = "---"; //p.GuidValue.ToString();
+                    //    }
+                    //}
 
                     myParameters.Add(myParameter);
                 }
@@ -84,6 +98,10 @@
                         s = e.Name + "<I>";
                     else
                         s = e.Name + "<T>";
+                } 
+                else if (e.Name == stname)
+                {
+                    s = "??(" + e.Name + ")";
                 }
                     
             }
@@ -105,6 +123,10 @@
             if (item.Contains("!!")) 
             {
                 return String.Format("{0}", noParameter);
+            }
+            else if (item.Contains("??"))
+            {
+                return String.Format("{0}", noCategory);
             }
             else if (item.Contains("<I>"))
             {
@@ -386,7 +408,7 @@
                                 sheet.Cells[currentCell].Style.Font.Bold = true;
                                 sheet.Cells[currentCell].Style.Font.Color.SetColor(System.Drawing.Color.DarkRed);
                                 sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.LightGray;
-                                sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightPink);
+                                sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightCyan);
                             }
                             if (currentString.Contains("!!"))
                             {
@@ -394,6 +416,13 @@
                                 sheet.Cells[currentCell].Style.Font.Color.SetColor(System.Drawing.Color.DarkRed);
                                 sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                                 sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Yellow);
+                            }
+                            if (currentString.Contains("??"))
+                            {
+                                sheet.Cells[currentCell].Style.Font.Bold = true;
+                                sheet.Cells[currentCell].Style.Font.Color.SetColor(System.Drawing.Color.DarkRed);
+                                sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.LightDown;
+                                sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightBlue);
                             }
                             if (currentString.Contains("МСК_Код по классификатору"))
                             {
@@ -432,7 +461,7 @@
 
                 // Save to file
                 
-                groupMarkers.Add(dRow - 6); // 6 это вычет из-за Условных обозначений
+                groupMarkers.Add(dRow - 7); // 7 это вычет из-за Условных обозначений
 
                 int lastMarker = groupMarkers.Count;
 

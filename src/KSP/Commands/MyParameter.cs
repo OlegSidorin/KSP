@@ -7,13 +7,15 @@
     using System.Threading.Tasks;
     public class MyParameter
     {
+        public string Id { get; set; }
         public string GuidValue { get; set; }
         public string Name { get; set; }
         public bool isShared { get; set; }
         public bool isInstance { get; set; }
 
-        public MyParameter(string gV,  string n, bool iS, bool iI)
+        public MyParameter(string i,  string gV,  string n, bool iS, bool iI)
         {
+            Id = i;
             GuidValue = gV;
             Name = n;
             isShared = iS;
