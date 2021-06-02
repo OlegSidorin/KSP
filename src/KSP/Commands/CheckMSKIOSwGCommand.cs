@@ -32,6 +32,10 @@
 			m.readyOn = 0;
 			string outputString = "";
 
+			MyMSK myMSK = new MyMSK();
+
+			int first, second;
+
 			List<MyParameter> myParameters = m.AllParameters(doc);
 
             #region перевести в словарь ключ - значение
@@ -179,6 +183,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("00a4a4bb-3575-45e4-8d3c-ddf9be915d27", myParameters, "МСК_Форма воздуховода"),
 					"Рабочее давление",
 					"Диаметр",
@@ -208,6 +213,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("00a4a4bb-3575-45e4-8d3c-ddf9be915d27", myParameters, "МСК_Форма воздуховода"),
 					"МСК_Коэффициент шероховатости", // нет такого в ФОП
 					m.SharedParameterFromGUIDName("e928970f-9364-478f-8deb-0cd53d9e0460", myParameters, "МСК_Заводская изоляция"),
@@ -234,6 +240,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("3b692944-1516-4825-8a7a-7d995b9af60b", myParameters, "МСК_Форма устройства"),
 					m.SharedParameterFromGUIDName("b9d989f7-25ef-48a2-8c8d-3fc08ca369f0", myParameters, "МСК_Тип решетки"),
 					m.SharedParameterFromGUIDName("c4d7c302-4962-46e5-aa62-f2885e5b5e2b", myParameters, "МСК_Признак ЭЭ"),
@@ -257,6 +264,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
 					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
 					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
@@ -279,6 +287,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("ca816cbc-4f60-47c8-b0fe-14eddcc32b16", myParameters, "МСК_Потеря давления жидкости"),
 					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
 					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
@@ -295,13 +304,14 @@
 				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
-	        // М_ИОС_06.1_Таблица для заполнения параметров отопительных приборов (оборудование) (общая)
+	        // М_ИОС_06.1_Таблица для заполнения параметров приборов (Механическое оборудование) (общая)
 			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_MechanicalEquipment).WhereElementIsNotElementType().Where(x => !x.Name.Contains("асос")).ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("eb2bda2f-f2cc-4e82-9dbb-37a902a93550", myParameters, "МСК_Тип расположения"),
 					m.SharedParameterFromGUIDName("946c4e27-a56c-422d-999c-778a150b950e", myParameters, "МСК_Масса"),
 					m.SharedParameterFromGUIDName("5f949eba-755b-4eeb-970b-1e1ac1908ec2", myParameters, "МСК_Удельная теплоемкость"),
@@ -314,19 +324,20 @@
 					m.SharedParameterFromGUIDName("87ce1509-068e-400f-afab-75df889463c7", myParameters, "МСК_Материал наименование"),
 					m.SharedParameterFromGUIDName("db32c5ee-af89-48b7-ad84-b6fa5e19d5c2", myParameters, "МСК_Горючесть")
 				};
-				sb.Append("М_ИОС_06.1_Таблица для заполнения параметров отопительных приборов (оборудование) (общая)\n");
+				sb.Append("М_ИОС_06.1_Таблица для заполнения параметров приборов (Механическое оборудование) (общая)\n");
 				sb.Append(m.RowHeader(pSet));
 				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
 
-	        // М_ИОС_07.1_Таблица для заполнения параметров распределительных устройств (общая)
+	        // М_ИОС_07.1_Таблица для заполнения параметров распределительных устройств (Электрооборудование) (общая)
 			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_ElectricalEquipment).WhereElementIsNotElementType().ToList();
 			if (elements != null)
 			{
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("7bae0e4a-a125-4818-973a-00fd56bf853d", myParameters, "МСК_Полная мощность"),
 					m.SharedParameterFromGUIDName("1d29e937-60db-46f8-9f4f-9fedd8d152d2", myParameters, "МСК_Мощность в режиме тушения пожара"),
 					m.SharedParameterFromGUIDName("9726f0ae-c8af-4ada-acf3-53905f395bbd", myParameters, "МСК_Класс защиты"),
@@ -350,6 +361,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("7bae0e4a-a125-4818-973a-00fd56bf853d", myParameters, "МСК_Полная мощность"),
 					m.SharedParameterFromGUIDName("1d29e937-60db-46f8-9f4f-9fedd8d152d2", myParameters, "МСК_Мощность в режиме тушения пожара"),
 					m.SharedParameterFromGUIDName("ffad6d6f-a441-4a89-aafe-d20c29181fe6", myParameters, "МСК_Признак заземления"),
@@ -374,6 +386,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
 					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
 					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
@@ -396,6 +409,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
 					m.SharedParameterFromGUIDName("fb30c7d4-3e3c-4fe6-821b-189cf35b7f9f", myParameters, "МСК_Марка"),
 					m.SharedParameterFromGUIDName("e7edd112-da46-46c3-886c-934dad841efb", myParameters, "МСК_Обозначение"),
@@ -418,6 +432,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("7bae0e4a-a125-4818-973a-00fd56bf853d", myParameters, "МСК_Полная мощность"),
 					m.SharedParameterFromGUIDName("1d29e937-60db-46f8-9f4f-9fedd8d152d2", myParameters, "МСК_Мощность в режиме тушения пожара"),
 					m.SharedParameterFromGUIDName("9726f0ae-c8af-4ada-acf3-53905f395bbd", myParameters, "МСК_Класс защиты"),
@@ -442,9 +457,10 @@
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Имя",
-										 "МСК_Код по классификатору"
-					};
+					"Имя",
+					"МСК_Код по классификатору",
+					"Значение Кода"
+				};
 				sb.Append("М_ИОС(КЛ)_01_Таблица для классификации пространств\n");
 				sb.Append(m.RowHeader(pSet));
 				sb.Append(m.RowElementsParameters(doc, pSet, elements));
@@ -458,7 +474,8 @@
 					"Семейство",
 					"Тип",
 					"Ключевая пометка",
-					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору")
+					"МСК_Код по классификатору",
+					"Значение Кода"
 				};
 				sb.Append("М_ИОС(КЛ)_02_Таблица для классификации сборок\n");
 				sb.Append(m.RowHeader(pSet));
@@ -484,7 +501,7 @@
 					}
 					sb.Append(ai.AssemblyTypeName).Append("\t");
 					sb.Append("?\t");
-					sb.Append(m.GetParameterValue(doc, el, "МСК_Код по классификатору")).Append("\t");
+					sb.Append(m.GetParameterValue(doc, el, "МСК_Код по классификатору")).Append("\t").Append(myMSK.getMyMSK(m.GetParameterValue(doc, el, "МСК_Код по классификатору"))).Append("\t");
 					sb.Append("\n");
 				}
 
@@ -500,7 +517,8 @@
 					"Семейство",
 					"Тип",
 					"Ключевая пометка",
-					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору")
+					"МСК_Код по классификатору",
+					"Значение Кода"
 				};
 				sb.Append("М_ИОС(КЛ)_03_Таблица для классификации форм\n");
 				sb.Append(m.RowHeader(pSet));
@@ -535,6 +553,7 @@
 	        // М_ИОС(КЛ)_04_Таблица для классификации остальных категорий
 			elements = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance))
 				.Where(x => x.Category.CategoryType == CategoryType.Model)
+				.Where(x => x.Category.Name != "Элементы узлов")
 				.Where(x => !x.Name.Contains("КПСП_Отверстие"))
 				.ToList();
 			List<string> elementsInStrings = new List<string>();
@@ -546,7 +565,8 @@
 					"Семейство",
 					"Тип",
 					"Ключевая пометка",
-					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору")
+					"МСК_Код по классификатору",
+					"Значение Кода"
 				};
 
 				sb.Append("М_ИОС(КЛ)_04_Таблица для классификации остальных категорий\n");
@@ -573,6 +593,7 @@
 							//							sb.Append(getParameterValue(doc,el, m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"), noData, noParameter)).Append("\t");
 							//							sb.Append("\n");
 							string result = m.GetParameterValue(doc, el, "МСК_Код по классификатору");
+							result += "\t" + myMSK.getMyMSK(result);
 							m.MSKCounter("МСК_Код по классификатору", result);
 							str += fi.Category.Name + "\t" + fis.FamilyName + "\t" + el.Name + "\t" + "?\t" + result + "\t";
 							elementsInStrings.Add(str);
@@ -612,14 +633,27 @@
                 m.readyOn = (int)(Math.Round((double)m.countIfParameterIs / (double)m.countAll * 100, 0));
             sbStart.Append(String.Format("Информационное наполнение: {0}%\n", m.readyOn));
             sbStart.Append("\n");
-            if (m.countAllMSKCod > 0)
-                outputString += "Заполнен классификатор: " + (int)(Math.Round((double)m.countIfMSKCOdIs / (double)m.countAllMSKCod * 100, 0)) + "%\n";
-            else
-                outputString += "Заполнен классификатор: 0%\n";
+			if (m.countAllMSKCod > 0)
+			{
+				first = (int)(Math.Round((double)m.countIfMSKCOdIs / (double)m.countAllMSKCod * 100, 0));
+				outputString += "Заполнен классификатор: " + first.ToString() + "%\n";
+			}
+			else
+			{
+				first = 0;
+				outputString += "Заполнен классификатор: 0%\n";
+			}
             if ((m.countAll > 0) || (m.countAll != m.countAllMSKCod))
-                outputString += "Заполнения параметров элементов модели: " + (int)(Math.Round((double)(m.countIfParameterIs - m.countIfMSKCOdIs) / (double)(m.countAll - m.countAllMSKCod) * 100, 0)) + "%\n";
+            {
+				second = (int)(Math.Round((double)(m.countIfParameterIs - m.countIfMSKCOdIs) / (double)(m.countAll - m.countAllMSKCod) * 100, 0));
+				outputString += "Заполнения параметров элементов модели: " + second.ToString() + "%\n";
+			}
             else
-                outputString += "Заполнения параметров элементов модели: 0%\n";
+            {
+				second = 0;
+				outputString += "Заполнения параметров элементов модели: 0%\n";
+			}
+                
 
             sbStart.Append(outputString).Append("\n");
             #endregion
@@ -644,7 +678,7 @@
             if (!Directory.Exists(m.workingDir))
                 Directory.CreateDirectory(m.workingDir);
 
-            string filePathToExcel = m.workingDir + m.CropFileName(doc.Title) + String.Format(" (МСК на {0:00}%)", m.readyOn) + ".xlsx";
+            string filePathToExcel = m.workingDir + m.CropFileName(doc.Title) + String.Format(" (МСК_Код на {0:00}% ост на {1:00}%)", first, second) + ".xlsx";
             //string filePathToTxt = CropFileName(document.Title) + String.Format(" (МСК на {0:00}пр)", readyOn);
             string excelSheet = m.CropFileName(doc.Title);
             // writeToFile(dirPath, filePathToTxt, sb2.ToString());

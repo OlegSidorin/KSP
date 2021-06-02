@@ -23,6 +23,7 @@
         public int countIfParameterIs;
         public int countIfMSKCOdIs;
         public int readyOn;
+        
 
         public List<MyParameter> AllParameters(Document doc)
         {
@@ -119,7 +120,6 @@
         }
         public string GetParameterValue(Document doc, Element el, string item)
         {
-            
             if (item.Contains("!!")) 
             {
                 return String.Format("{0}", noParameter);
@@ -127,6 +127,10 @@
             else if (item.Contains("??"))
             {
                 return String.Format("{0}", noCategory);
+            }
+            else if (item.Contains("Значение Кода"))
+            {
+                return String.Format("{0}", "");
             }
             else if (item.Contains("<I>"))
             {
@@ -140,10 +144,10 @@
                             if (p.AsString() == "")
                                 return String.Format("{0}", noData);
                             else
-                                return String.Format("{0}", p.AsString());
+                                return String.Format("{0}", p.AsString().Replace("\n", " "));
                         }
                         else
-                            return String.Format("{0}", p.AsValueString());
+                            return String.Format("{0}", p.AsValueString().Replace("\n", " "));
                     }
                     else
                         return String.Format("{0}", noData);
@@ -167,10 +171,10 @@
                             if (p.AsString() == "")
                                 return String.Format("{0}", noData);
                             else
-                                return String.Format("{0}", p.AsString());
+                                return String.Format("{0}", p.AsString().Replace("\n", " "));
                         }
                         else
-                            return String.Format("{0}", p.AsValueString());
+                            return String.Format("{0}", p.AsValueString().Replace("\n", " "));
                     }
                     else
                         return String.Format("{0}", noData);
@@ -193,10 +197,10 @@
                             if (p.AsString() == "")
                                 return String.Format("{0}", noData);
                             else
-                                return String.Format("{0}", p.AsString());
+                                return String.Format("{0}", p.AsString().Replace("\n", " "));
                         }
                         else
-                            return String.Format("{0}", p.AsValueString());
+                            return String.Format("{0}", p.AsValueString().Replace("\n", " "));
                     }
                     else
                         return String.Format("{0}", noData);
@@ -215,10 +219,10 @@
                                 if (p.AsString() == "")
                                     return String.Format("{0}", noData);
                                 else
-                                    return String.Format("{0}", p.AsString());
+                                    return String.Format("{0}", p.AsString().Replace("\n", " "));
                             }
                             else
-                                return String.Format("{0}", p.AsValueString());
+                                return String.Format("{0}", p.AsValueString().Replace("\n", " "));
                         }
                         else
                             return String.Format("{0}", noData);
@@ -243,6 +247,7 @@
         }
         public string RowElementsParameters(Document doc, string[] pSet, IList<Element> iList)
         {
+            MyMSK myMSK = new MyMSK();
             StringBuilder sb = new StringBuilder();
             foreach (var el in iList)
             {
@@ -250,8 +255,14 @@
                 for (int i = 1; i < pSet.Count(); i++)
                 {
                     string result = GetParameterValue(doc, el, pSet[i]);
-                    sb.Append(result).Append("\t");
+
+                    if (pSet[i].Contains("МСК_Код по классификатору"))
+                        sb.Append(result).Append("\t").Append(myMSK.getMyMSK(result));
+                    else
+                        sb.Append(result).Append("\t");
+
                     MSKCounter(pSet[i], result);
+
                 }
                 sb.Append("\n");
             }
@@ -400,15 +411,15 @@
                             {
                                 sheet.Cells[currentCell].Style.Font.Bold = true;
                                 sheet.Cells[currentCell].Style.Font.Color.SetColor(System.Drawing.Color.DarkRed);
-                                sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.LightGray;
-                                sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightPink);
+                                //sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.LightGray;
+                                //sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightPink);
                             }
                             if (currentString == noCategory)
                             {
                                 sheet.Cells[currentCell].Style.Font.Bold = true;
                                 sheet.Cells[currentCell].Style.Font.Color.SetColor(System.Drawing.Color.DarkRed);
-                                sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.LightGray;
-                                sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightCyan);
+                                //sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.LightGray;
+                                //sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightCyan);
                             }
                             if (currentString.Contains("!!"))
                             {
@@ -519,6 +530,7 @@
 
         public void OpenFolder(string folderPath)
         {
+            
             if (Directory.Exists(folderPath))
             {
                 ProcessStartInfo startInfo = new ProcessStartInfo
