@@ -8,7 +8,6 @@
     using System.Text;
     using OfficeOpenXml;
     using System.IO;
-	using static KSP.CommonMethods;
 
     [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
     [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
@@ -18,7 +17,8 @@
         {
             UIDocument uiDoc = commandData.Application.ActiveUIDocument;
             Document doc = uiDoc.Document;
-            ProjectLocation currentLocation = doc.ActiveProjectLocation;
+			MyMethods m = new MyMethods();
+			ProjectLocation currentLocation = doc.ActiveProjectLocation;
             IList<BasePoint> bpList = new FilteredElementCollector(doc).OfClass(typeof(BasePoint)).Cast<BasePoint>().ToList();
 
             IList<ElementId> ids = new List<ElementId>();
@@ -48,12 +48,12 @@
                 //CreateCross(uiDoc, new XYZ(0, 0, 0), ang, "Zero");
                 str = txtProjectPoint + "\n" + txtSurveyPoint;
 				//writeToFile("C:\\Users\\Sidorin_O\\Documents\\TEST", doc.Title, str);
-				if (!Directory.Exists(workingDir))
+				if (!Directory.Exists(m.workingDir))
 				{
-					Directory.CreateDirectory(workingDir);
+					Directory.CreateDirectory(m.workingDir);
 				}
-				string filePathToExcel = workingDir + CropFileName(doc.Title) + " - базовые точки" + ".xlsx";
-                string excelSheet = "БТ-" + CropFileName(doc.Title);
+				string filePathToExcel = m.workingDir + m.CropFileName(doc.Title) + " - базовые точки" + ".xlsx";
+                string excelSheet = "БТ-" + m.CropFileName(doc.Title);
 
 
                 WriteToExcel(filePathToExcel, excelSheet, str, "нет данных", "нет параметра");
@@ -61,13 +61,16 @@
 
                 t.Commit();
             }
-            return Result.Succeeded;
+			m.OpenFolder(m.workingDir);
+			return Result.Succeeded;
         }
 
 		private string BasePointsInfo(UIDocument uiDoc, BasePoint bp)
 		{
 			Autodesk.Revit.DB.Document doc = uiDoc.Document;
 			ProjectLocation currentLocation = doc.ActiveProjectLocation;
+
+			MyMethods m = new MyMethods();
 
 			string northSouthName = "С/Ю";
 			string eastWestName = "В/З";
@@ -88,7 +91,7 @@
 
 			if (!bp.IsShared) // project point
 			{
-				str += "Файл:\t" + CropFileName(doc.Title) + ".rvt" + "\n";
+				str += "Файл:\t" + m.CropFileName(doc.Title) + ".rvt" + "\n";
 				str += "Текущая площадка: " + doc.ActiveProjectLocation.Name + "\n\n";
 				str += bp.Category.Name + "\n";
 				//str += bp.Id + " \n";
@@ -277,6 +280,7 @@
 
 				// Save to file
 				package.SaveAs(file);
+				
 			}
 		}
 	}
