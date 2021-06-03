@@ -36,6 +36,7 @@
 
     public class MyMSK
     {
+        MyMethods m = new MyMethods();
         public string getMyMSK(string str)
         {
             switch (str)
@@ -1497,7 +1498,7 @@
                 case "СТ 10 19 20 30": return "Углепластиковая";
                 case "СТ 10 20": return "Доска электротехническая";
                 case "СТ 10 20 10": return "Доска асбестоцементная дугостойкая (АЦЭИД)";
-                default: return " --- ";
+                default: return m.noData;
             }
         }
     }

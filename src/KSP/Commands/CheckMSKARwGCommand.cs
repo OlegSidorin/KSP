@@ -7,7 +7,6 @@
     using Autodesk.Revit.DB;
     using System.Text;
     using System.Linq;
-    //using static KSP.CommonMethods;
 
     [Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
     [Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
@@ -33,7 +32,11 @@
             m.readyOn = 0;
             string outputString = "";
 
-            List<MyParameter> myParameters = m.AllParameters(doc);
+			MyMSK myMSK = new MyMSK();
+
+			int first, second;
+
+			List<MyParameter> myParameters = m.AllParameters(doc);
 
             #region перевести в словарь ключ - значение
             //Dictionary<string, MyParameter> onlyShared = new Dictionary<string, MyParameter>();
@@ -150,7 +153,8 @@
                 string[] pSet = {
                     "Имя",
                     m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
-                    m.SharedParameterFromGUIDName("006382d2-f621-41ac-9d24-8cbbe94d45ea", myParameters, "МСК_Доступность МГН"),
+					"Значение Кода",
+					m.SharedParameterFromGUIDName("006382d2-f621-41ac-9d24-8cbbe94d45ea", myParameters, "МСК_Доступность МГН"),
                     m.SharedParameterFromGUIDName("df9939e1-a33a-47d4-8f36-6a1cca58117c", myParameters, "МСК_Признак наружного пространства"),
                     m.SharedParameterFromGUIDName("83454a18-368f-467c-a5fc-24727da0f618", myParameters, "МСК_Описание зон и помещений"),
                     "Номер",
@@ -193,6 +197,7 @@
 				string[] pSet = {
 					"Имя",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("006382d2-f621-41ac-9d24-8cbbe94d45ea", myParameters, "МСК_Доступность МГН"),
 					m.SharedParameterFromGUIDName("df9939e1-a33a-47d4-8f36-6a1cca58117c", myParameters, "МСК_Признак наружного пространства"),
 					m.SharedParameterFromGUIDName("83454a18-368f-467c-a5fc-24727da0f618", myParameters, "МСК_Описание зон и помещений"),
@@ -236,6 +241,7 @@
 				string[] pSet = {
 					"Имя",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("006382d2-f621-41ac-9d24-8cbbe94d45ea", myParameters, "МСК_Доступность МГН"),
 					m.SharedParameterFromGUIDName("df9939e1-a33a-47d4-8f36-6a1cca58117c", myParameters, "МСК_Признак наружного пространства"),
 					m.SharedParameterFromGUIDName("83454a18-368f-467c-a5fc-24727da0f618", myParameters, "МСК_Описание зон и помещений"),
@@ -282,6 +288,7 @@
 				string[] pSet = {
 					"Имя",
                     m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("006382d2-f621-41ac-9d24-8cbbe94d45ea", myParameters, "МСК_Доступность МГН"),
 					m.SharedParameterFromGUIDName("df9939e1-a33a-47d4-8f36-6a1cca58117c", myParameters, "МСК_Признак наружного пространства"),
 					m.SharedParameterFromGUIDName("83454a18-368f-467c-a5fc-24727da0f618", myParameters, "МСК_Описание зон и помещений"),
@@ -325,6 +332,7 @@
 				string[] pSet = {
 					"Имя",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("006382d2-f621-41ac-9d24-8cbbe94d45ea", myParameters, "МСК_Доступность МГН"),
 					m.SharedParameterFromGUIDName("df9939e1-a33a-47d4-8f36-6a1cca58117c", myParameters, "МСК_Признак наружного пространства"),
 					m.SharedParameterFromGUIDName("83454a18-368f-467c-a5fc-24727da0f618", myParameters, "МСК_Описание зон и помещений"),
@@ -368,6 +376,7 @@
 				string[] pSet = {
 					"Имя",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("006382d2-f621-41ac-9d24-8cbbe94d45ea", myParameters, "МСК_Доступность МГН"),
 					m.SharedParameterFromGUIDName("df9939e1-a33a-47d4-8f36-6a1cca58117c", myParameters, "МСК_Признак наружного пространства"),
 					m.SharedParameterFromGUIDName("83454a18-368f-467c-a5fc-24727da0f618", myParameters, "МСК_Описание зон и помещений"),
@@ -415,6 +424,7 @@
 				string[] pSet = {
 					"Имя",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("006382d2-f621-41ac-9d24-8cbbe94d45ea", myParameters, "МСК_Доступность МГН"),
 					m.SharedParameterFromGUIDName("df9939e1-a33a-47d4-8f36-6a1cca58117c", myParameters, "МСК_Признак наружного пространства"),
 					m.SharedParameterFromGUIDName("50ffa05b-c914-4445-a91d-00b7734d7474", myParameters, "МCК_Категория"),
@@ -477,6 +487,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("886ac3f7-ee92-4498-bd58-8248e37001e6", myParameters, "МСК_Признак несущей конструкции"),
 					m.SharedParameterFromGUIDName("4d902dad-86e1-4713-841a-a196798dbdf9", myParameters, "МСК_Предел огнестойкости"),
 					m.SharedParameterFromGUIDName("96901a85-e765-4879-957c-b8fc4ff2858b", myParameters, "МСК_Противопожарная преграда"),
@@ -501,6 +512,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					"Категория",
 					"Семейство",
 					m.SharedParameterFromGUIDName("4d902dad-86e1-4713-841a-a196798dbdf9", myParameters, "МСК_Предел огнестойкости"),
@@ -540,6 +552,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("4d902dad-86e1-4713-841a-a196798dbdf9", myParameters, "МСК_Предел огнестойкости"),
 					m.SharedParameterFromGUIDName("886ac3f7-ee92-4498-bd58-8248e37001e6", myParameters, "МСК_Признак несущей конструкции"),
 					m.SharedParameterFromGUIDName("96901a85-e765-4879-957c-b8fc4ff2858b", myParameters, "МСК_Противопожарная преграда"),
@@ -576,6 +589,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("8e6e80c1-5cde-4cb3-af65-e6db9a0a9174", myParameters, "МСК_Признак горючести"),
 					m.SharedParameterFromGUIDName("669ec82a-2d66-4d29-8a1a-ec611c22e323", myParameters, "МСК_Воспламеняемость"),
 					m.SharedParameterFromGUIDName("db32c5ee-af89-48b7-ad84-b6fa5e19d5c2", myParameters, "МСК_Горючесть"),
@@ -614,6 +628,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("8e6e80c1-5cde-4cb3-af65-e6db9a0a9174", myParameters, "МСК_Признак горючести"),
 					m.SharedParameterFromGUIDName("669ec82a-2d66-4d29-8a1a-ec611c22e323", myParameters, "МСК_Воспламеняемость"),
 					m.SharedParameterFromGUIDName("db32c5ee-af89-48b7-ad84-b6fa5e19d5c2", myParameters, "МСК_Горючесть"),
@@ -638,6 +653,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("8e6e80c1-5cde-4cb3-af65-e6db9a0a9174", myParameters, "МСК_Признак горючести"),
 					m.SharedParameterFromGUIDName("669ec82a-2d66-4d29-8a1a-ec611c22e323", myParameters, "МСК_Воспламеняемость"),
 					m.SharedParameterFromGUIDName("db32c5ee-af89-48b7-ad84-b6fa5e19d5c2", myParameters, "МСК_Горючесть"),
@@ -662,6 +678,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("886ac3f7-ee92-4498-bd58-8248e37001e6", myParameters, "МСК_Признак несущей конструкции"),
 					m.SharedParameterFromGUIDName("4d902dad-86e1-4713-841a-a196798dbdf9", myParameters, "МСК_Предел огнестойкости"),
 					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
@@ -684,6 +701,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("8715f455-f9d7-4f39-b23f-7b3f437c830d", myParameters, "МСК_Класс устойчивости ко взлому"),
 					m.SharedParameterFromGUIDName("61a4dfb6-d951-4135-a709-6a00fe82977e", myParameters, "МСК_Устойчивость к разрушающим воздействиям"),
 					m.SharedParameterFromGUIDName("3fc9867b-acf5-4f2b-bc26-b773ce2c314a", myParameters, "МСК_Процент остекления"),
@@ -724,6 +742,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("85f01269-04b3-4437-891c-e3ceacfeeabc", myParameters, "МСК_Площадь отстекления"),
 					"МСК_Путь эвакуации",
 					m.SharedParameterFromGUIDName("2eebaa27-2210-4552-aeb0-e37ef07eca4c", myParameters, "МСК_Автоматическое открывание"),
@@ -758,6 +777,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("4d902dad-86e1-4713-841a-a196798dbdf9", myParameters, "МСК_Предел огнестойкости"),
 					"Текущее количество подступенков",
 					"Текущая высота подступенка",
@@ -787,6 +807,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("4d902dad-86e1-4713-841a-a196798dbdf9", myParameters, "МСК_Предел огнестойкости"),
 					"Текущее количество подступенков",
 					"Текущее количество проступей",
@@ -820,6 +841,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("4d902dad-86e1-4713-841a-a196798dbdf9", myParameters, "МСК_Предел огнестойкости"),
 					m.SharedParameterFromGUIDName("411832d7-f92f-49ba-aba7-31ec7754e27c", myParameters, "МСК_Высота проезда"),
 					m.SharedParameterFromGUIDName("006382d2-f621-41ac-9d24-8cbbe94d45ea", myParameters, "МСК_Доступность МГН"),
@@ -848,6 +870,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					"Высота ограждения",
 					m.SharedParameterFromGUIDName("9b679ab7-ea2e-49ce-90ab-0549d5aa37ff", myParameters, "МСК_Размер_Диаметр"),
 					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
@@ -872,6 +895,7 @@
 				string[] pSet = {
 					"Тип",
 					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода",
 					m.SharedParameterFromGUIDName("647b5bc9-6570-416c-93d3-bd0d159775f2", myParameters, "МСК_Наименование"),
 					m.SharedParameterFromGUIDName("b20d4101-069a-4467-aeac-3f2151cee025", myParameters, "МСК_Наружный"),
 					m.SharedParameterFromGUIDName("fb118351-20b2-4f02-bd2c-99b27abaf8b2", myParameters, "МСК_Метод изготовления"),
@@ -894,7 +918,8 @@
 					"Семейство",
 					"Тип",
 					"Ключевая пометка",
-					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору")
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода"
 				};
 				sb.Append("М_КР(КЛ)_07_Таблица для классификации форм\n");
 				sb.Append(m.RowHeader(pSet));
@@ -915,6 +940,7 @@
 							sb.Append("?\t");
 							string result = m.GetParameterValue(doc, el, "МСК_Код по классификатору");
 							m.MSKCounter("МСК_Код по классификатору", result);
+							result += "\t" + myMSK.getMyMSK(result);
 							sb.Append(result).Append("\t");
 							sb.Append("\n");
 						}
@@ -938,7 +964,8 @@
 					"Семейство",
 					"Тип",
 					"Ключевая пометка",
-					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору")
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода"
 				};
 				sb.Append("М_КР(КЛ)_08_Таблица для классификации крыш\n");
 				sb.Append(m.RowHeader(pSet));
@@ -959,6 +986,7 @@
 							sb.Append("?\t");
 							string result = m.GetParameterValue(doc, el, "МСК_Код по классификатору");
 							m.MSKCounter("МСК_Код по классификатору", result);
+							result += "\t" + myMSK.getMyMSK(result);
 							sb.Append(result).Append("\t");
 							sb.Append("\n");
 						}
@@ -990,12 +1018,11 @@
 			if (elements != null)
 			{
 				string[] pSet = {
-										 "Категория",
-										 "Семейство",
-										 "Тип",
-										 "Ключевая пометка",
-										 m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору")
-					};
+					"Категория",
+					"Семейство",
+					m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"),
+					"Значение Кода"
+				};
 
 				sb.Append("М_АР(КЛ)_13_Таблица для классификации остальных категорий\n");
 				sb.Append(m.RowHeader(pSet));
@@ -1022,7 +1049,8 @@
 							//							sb.Append("\n");
 							string result = m.GetParameterValue(doc, el, "МСК_Код по классификатору");
 							m.MSKCounter("МСК_Код по классификатору", result);
-							str += fi.Category.Name + "\t" + fis.FamilyName + "\t" + el.Name + "\t" + "?\t" + result + "\t";
+							result += "\t" + myMSK.getMyMSK(result);
+							str += fi.Category.Name + "\t" + fis.FamilyName + "\t" + result + "\t";
 							elementsInStrings.Add(str);
 						}
 
@@ -1047,62 +1075,82 @@
 				}
 			}
 
-
+			 
 
 			#region Заголовок файла
 			StringBuilder sbStart = new StringBuilder();
-            sbStart.Append("Отчет по модели: ").Append(m.CropFileName(doc.Title)).Append("\n");
-            sbStart.Append("Составлен: ").Append(String.Format("{0:dd.MM.yyyy}г.", dt)).Append("\n");
-            sbStart.Append("Заполнено параметров: " + m.countIfParameterIs + "\n");
-            sbStart.Append("Всего параметров: " + m.countAll + "\n");
-            if (m.countAll > 0)
-                m.readyOn = (int)(Math.Round((double)m.countIfParameterIs / (double)m.countAll * 100, 0));
-            sbStart.Append(String.Format("Информационное наполнение: {0}%\n", m.readyOn));
-            sbStart.Append("\n");
-            if (m.countAllMSKCod > 0)
-                outputString += "Заполнен классификатор: " + (int)(Math.Round((double)m.countIfMSKCOdIs / (double)m.countAllMSKCod * 100, 0)) + "%\n";
-            else
-                outputString += "Заполнен классификатор: 0%\n";
-            if ((m.countAll > 0) || (m.countAll != m.countAllMSKCod))
-                outputString += "Заполнения параметров элементов модели: " + (int)(Math.Round((double)(m.countIfParameterIs - m.countIfMSKCOdIs) / (double)(m.countAll - m.countAllMSKCod) * 100, 0)) + "%\n";
-            else
-                outputString += "Заполнения параметров элементов модели: 0%\n";
+			sbStart.Append("Отчет по модели: ").Append(m.CropFileName(doc.Title)).Append("\n");
+			sbStart.Append("Составлен: ").Append(String.Format("{0:dd.MM.yyyy}г.", dt)).Append("\n");
+			sbStart.Append("Заполнено параметров: " + m.countIfParameterIs + "\n");
+			sbStart.Append("Всего параметров: " + m.countAll + "\n");
+			if (m.countAll > 0)
+				m.readyOn = (int)(Math.Round((double)m.countIfParameterIs / (double)m.countAll * 100, 0));
+			sbStart.Append(String.Format("Информационное наполнение: {0}%\n", m.readyOn));
+			sbStart.Append("\n");
+			if (m.countAllMSKCod > 0)
+			{
+				first = (int)(Math.Round((double)m.countIfMSKCOdIs / (double)m.countAllMSKCod * 100, 0));
+				outputString += "Заполнен классификатор: " + first.ToString() + "%\n";
+			}
+			else
+			{
+				first = 0;
+				outputString += "Заполнен классификатор: 0%\n";
+			}
+			if ((m.countAll > 0) || (m.countAll != m.countAllMSKCod))
+			{
+				second = (int)(Math.Round((double)(m.countIfParameterIs - m.countIfMSKCOdIs) / (double)(m.countAll - m.countAllMSKCod) * 100, 0));
+				outputString += "Заполнения параметров элементов модели: " + second.ToString() + "%\n";
+			}
+			else
+			{
+				second = 0;
+				outputString += "Заполнения параметров элементов модели: 0%\n";
+			}
 
-            sbStart.Append(outputString).Append("\n");
-            #endregion
 
-            StringBuilder sbResult = new StringBuilder();
+			sbStart.Append(outputString).Append("\n");
+			#endregion
 
-            sbResult.Append(sbStart.ToString()).Append(sb.ToString());
+			StringBuilder sbResult = new StringBuilder();
 
-            #region Завершение и Условные обозначения
-            StringBuilder sbEnd = new StringBuilder();
-            sbEnd.Append("\n\nУсловные обозначения: \n");
-            sbEnd.Append("!!(_) \t - не добавлен в модель общий параметр\n");
+			sbResult.Append(sbStart.ToString()).Append(sb.ToString());
+
+			#region Завершение и Условные обозначения
+			StringBuilder sbEnd = new StringBuilder();
+			sbEnd.Append("\n\nУсловные обозначения: \n");
+			sbEnd.Append("!!(_) \t - не добавлен в модель общий параметр\n");
 			sbEnd.Append("??(_)" + "\t - есть параметр с таким именем, но он не из ФОП или из другого ФОП\n");
 			sbEnd.Append(noData + "\t - значение параметра не заполнено\n");
 			sbEnd.Append(noParameter + "\t - не добавлен в модель общий параметр в экземпляре\n");
 			sbEnd.Append(noCategory + "\t - не назначена категория, связанная с этим общим параметром\n");
-            #endregion
+			#endregion
 
-            sbResult.Append(sbEnd.ToString());
+			sbResult.Append(sbEnd.ToString());
 
-            //string dirPath = @outputFolder + @"\"; // для динамо
-            if (!Directory.Exists(m.workingDir))
-                Directory.CreateDirectory(m.workingDir);
+			if (!Directory.Exists(m.workingDir))
+				Directory.CreateDirectory(m.workingDir);
 
-            string filePathToExcel = m.workingDir + m.CropFileName(doc.Title) + String.Format(" (МСК на {0:00}%)", m.readyOn) + ".xlsx";
-            //string filePathToTxt = CropFileName(document.Title) + String.Format(" (МСК на {0:00}пр)", readyOn);
-            string excelSheet = m.CropFileName(doc.Title);
-            // writeToFile(dirPath, filePathToTxt, sb2.ToString());
-            m.WriteToExcel(filePathToExcel, excelSheet, sbResult.ToString(), noData, noParameter, 37);
-            //return outputString;
+			string filePathToExcel = m.workingDir + m.CropFileName(doc.Title) + String.Format(" (МСК_Код на {0:00}% ост на {1:00}%)", first, second) + ".xlsx";
+			//string filePathToTxt = CropFileName(document.Title) + String.Format(" (МСК на {0:00}пр)", readyOn);
+			string excelSheet = m.CropFileName(doc.Title);
+			// writeToFile(dirPath, filePathToTxt, sb2.ToString());
+			try
+			{
+				m.WriteToExcel(filePathToExcel, excelSheet, sbResult.ToString(), noData, noParameter, 37);
+			}
+			catch
+			{
+				var rnd = new Random();
+				filePathToExcel = m.workingDir + m.CropFileName(doc.Title) + String.Format(" (МСК_Код на {0:00}% ост на {1:00}%)", first, second) + "-v" + rnd.Next(99).ToString() + ".xlsx";
+				m.WriteToExcel(filePathToExcel, excelSheet, sbResult.ToString(), noData, noParameter, 37);
+			}
 
 
-            TaskDialog.Show("Final", "готово!");
+			TaskDialog.Show("Final", "Готово!");
 			m.OpenFolder(m.workingDir);
 			return Result.Succeeded;
-        }
+		}
 
        
     }

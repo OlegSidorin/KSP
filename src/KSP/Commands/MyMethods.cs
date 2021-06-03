@@ -230,7 +230,7 @@
                     catch (Exception)
                     {
                         //TaskDialog.Show("Warning", e1.ToString());
-                        return String.Format("{0}", noCategory);
+                        return String.Format("{0}", noParameter);
                     }
                 }
             }
@@ -435,7 +435,7 @@
                                 sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.LightDown;
                                 sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightBlue);
                             }
-                            if (currentString.Contains("МСК_Код по классификатору"))
+                            if (currentString.Contains("МСК_Код по классификатору") || currentString.Contains("Значение Кода"))
                             {
                                 sheet.Cells[currentCell].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.LightGray;
                                 sheet.Cells[currentCell].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGreen);
@@ -527,7 +527,6 @@
                 cropFileName = cropFileName.Substring(0, cropFileName.Length - 4);
             return cropFileName;
         }
-
         public void OpenFolder(string folderPath)
         {
             
@@ -536,8 +535,25 @@
                 ProcessStartInfo startInfo = new ProcessStartInfo
                 {
                     Arguments = folderPath,
-                    FileName = "explorer.exe"
+                    FileName = "explorer.exe",
                 };
+                var pr = Process.GetProcessesByName("explorer").Where(xxx => xxx.MainWindowTitle.Contains("TESTS")).ToList();
+                string ss = "";
+                if (pr != null)
+                {
+                    //var str = pr.Count.ToString();
+                    //TaskDialog.Show("Warning", str);
+                    foreach (var p in pr)
+                    {
+                        try
+                        {
+                            p.Kill();
+                        }
+                        catch { }
+                        
+                    }
+                }
+                //TaskDialog.Show("Process", ss);
                 Process.Start(startInfo);
             }
             else

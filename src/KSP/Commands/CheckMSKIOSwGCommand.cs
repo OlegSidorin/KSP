@@ -7,7 +7,6 @@
     using Autodesk.Revit.DB;
     using System.Text;
     using System.Linq;
-	//using static KSP.CommonMethods;
 
 	[Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
 	[Autodesk.Revit.Attributes.Regeneration(Autodesk.Revit.Attributes.RegenerationOption.Manual)]
@@ -122,7 +121,7 @@
 				sb.Append("М_ИОС_Таблица для ДОБАВЛЕНИЯ параметров модели\n");
 				for (int i = 0; i < pSet.Count(); i++)
 				{
-					sb.Append(pSet[i]).Append("\t");
+					sb.Append(pSet[i].Replace("<I>", "").Replace("<T>", "")).Append("\t");
 				}
 				sb.Append("\n");
 
@@ -155,7 +154,7 @@
 				sb.Append("М_ИОС_00_Таблица для заполнения параметров уровней\n");
 				for (int i = 0; i < pSet.Count(); i++)
 				{
-					sb.Append(pSet[i]).Append("\t");
+					sb.Append(pSet[i].Replace("<I>", "").Replace("<T>", "")).Append("\t");
 				}
 				sb.Append("\n");
 
@@ -304,7 +303,7 @@
 				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
 
-	        // М_ИОС_06.1_Таблица для заполнения параметров приборов (Механическое оборудование) (общая)
+	        // М_ИОС_06.1_Таблица для заполнения параметров приборов и оборудования (Механическое оборудование) (общая)
 			elements = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_MechanicalEquipment).WhereElementIsNotElementType().Where(x => !x.Name.Contains("асос")).ToList();
 			if (elements != null)
 			{
@@ -324,7 +323,7 @@
 					m.SharedParameterFromGUIDName("87ce1509-068e-400f-afab-75df889463c7", myParameters, "МСК_Материал наименование"),
 					m.SharedParameterFromGUIDName("db32c5ee-af89-48b7-ad84-b6fa5e19d5c2", myParameters, "МСК_Горючесть")
 				};
-				sb.Append("М_ИОС_06.1_Таблица для заполнения параметров приборов (Механическое оборудование) (общая)\n");
+				sb.Append("М_ИОС_06.1_Таблица для заполнения параметров приборов и оборудования (Механическое оборудование) (общая)\n");
 				sb.Append(m.RowHeader(pSet));
 				sb.Append(m.RowElementsParameters(doc, pSet, elements));
 			}
@@ -537,7 +536,7 @@
 							sb.Append(fis.FamilyName).Append("\t");
 							sb.Append(el.Name).Append("\t");
 							sb.Append("?\t");
-							sb.Append(m.GetParameterValue(doc, el, "МСК_Код по классификатору")).Append("\t");
+							sb.Append(m.GetParameterValue(doc, el, "МСК_Код по классификатору")).Append("\t").Append(myMSK.getMyMSK(m.GetParameterValue(doc, el, "МСК_Код по классификатору"))).Append("\t");
 							sb.Append("\n");
 						}
 
@@ -563,8 +562,6 @@
 				string[] pSet = {
 					"Категория",
 					"Семейство",
-					"Тип",
-					"Ключевая пометка",
 					"МСК_Код по классификатору",
 					"Значение Кода"
 				};
@@ -593,9 +590,9 @@
 							//							sb.Append(getParameterValue(doc,el, m.SharedParameterFromGUIDName("08257ef9-5429-48b1-aa0b-de2d9988ab0b", myParameters, "МСК_Код по классификатору"), noData, noParameter)).Append("\t");
 							//							sb.Append("\n");
 							string result = m.GetParameterValue(doc, el, "МСК_Код по классификатору");
-							result += "\t" + myMSK.getMyMSK(result);
 							m.MSKCounter("МСК_Код по классификатору", result);
-							str += fi.Category.Name + "\t" + fis.FamilyName + "\t" + el.Name + "\t" + "?\t" + result + "\t";
+							result += "\t" + myMSK.getMyMSK(result);
+							str += fi.Category.Name + "\t" + fis.FamilyName + "\t" + result + "\t";
 							elementsInStrings.Add(str);
 						}
 
@@ -674,7 +671,6 @@
 
 			sbResult.Append(sbEnd.ToString());
 
-            //string dirPath = @outputFolder + @"\"; // для динамо
             if (!Directory.Exists(m.workingDir))
                 Directory.CreateDirectory(m.workingDir);
 
@@ -682,11 +678,19 @@
             //string filePathToTxt = CropFileName(document.Title) + String.Format(" (МСК на {0:00}пр)", readyOn);
             string excelSheet = m.CropFileName(doc.Title);
             // writeToFile(dirPath, filePathToTxt, sb2.ToString());
-            m.WriteToExcel(filePathToExcel, excelSheet, sbResult.ToString(), noData, noParameter, 37);
-            //return outputString;
+			try
+            {
+				m.WriteToExcel(filePathToExcel, excelSheet, sbResult.ToString(), noData, noParameter, 37);
+			}
+			catch
+            {
+				var rnd = new Random();
+				filePathToExcel = m.workingDir + m.CropFileName(doc.Title) + String.Format(" (МСК_Код на {0:00}% ост на {1:00}%)", first, second) + "-v" + rnd.Next(99).ToString() + ".xlsx";
+				m.WriteToExcel(filePathToExcel, excelSheet, sbResult.ToString(), noData, noParameter, 37);
+			}
+            
 
-
-            TaskDialog.Show("Final", "готово!");
+            TaskDialog.Show("Final", "Готово!");
 			m.OpenFolder(m.workingDir);
             return Result.Succeeded;
         }
