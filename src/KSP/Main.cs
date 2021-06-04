@@ -1,6 +1,7 @@
 ﻿namespace KSP
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
     using System.Windows.Media.Imaging;
@@ -13,10 +14,25 @@
         #region external application public methods
         public Result OnStartup(UIControlledApplication application)
         {
-            string path = Assembly.GetExecutingAssembly().Location;
-            application.CreateRibbonTab(tabName);
+            List<RibbonPanel> panelList = new List<RibbonPanel>();
+            try
+            {
+                panelList = application.GetRibbonPanels(tabName);
+            }
+            catch
+            {
 
+            }
+
+            if (panelList.Count == 0)
+            {
+                application.CreateRibbonTab(tabName);
+            }
+
+            string path = Assembly.GetExecutingAssembly().Location;
             var panelBIM360 = application.CreateRibbonPanel(tabName, panelBIM360Name);
+
+
             var CreateBIM360ViewBtnData = new PushButtonData("CreateBIM360BtnData", "Создать вид\nNavisworks", path, "KSP.CreateBIM360ViewCommand")
             {
                 ToolTipImage = new BitmapImage(new Uri(Path.GetDirectoryName(path) + "\\res\\ao-32.png", UriKind.Absolute)),
