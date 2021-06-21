@@ -113,6 +113,33 @@
             SumDataBtn.LargeImage = new BitmapImage(new Uri(user + @"\source\repos\KSP\res\img\batman-32.png"));
             */
 
+            string panelKIRname = "КИРГИЗИЯ";
+            var panelKIR = application.CreateRibbonPanel(tabName, panelKIRname);
+
+            string ButtonADGCName = "ADGCBtn";
+            string ButtonADGCText = "Добавить\nКлассификатор";
+            PushButtonData ButtonADGCData = new PushButtonData(ButtonADGCName, ButtonADGCText, path, "KSP.AddADGClass")
+            {
+                ToolTipImage = new BitmapImage(new Uri(Path.GetDirectoryName(path) + "\\res\\kir-class.png", UriKind.Absolute)),
+                ToolTip = "Добавляет классификатор"
+            };
+            ButtonADGCData.LargeImage = new BitmapImage(new Uri(Path.GetDirectoryName(path) + "\\res\\kir-class.png", UriKind.Absolute));
+
+            string ButtonADG1Name = "ADG1Btn";
+            string ButtonADG1Text = "Добавить\nв ОВИК";
+            PushButtonData ButtonADG1Data = new PushButtonData(ButtonADG1Name, ButtonADG1Text, path, "KSP.AddGPParameterOVIK")
+            {
+                ToolTipImage = new BitmapImage(new Uri(Path.GetDirectoryName(path) + "\\res\\kir-ovik.png", UriKind.Absolute)),
+                ToolTip = "Добавляет параметры в ОВ по Киргизии"
+            };
+            ButtonADG1Data.LargeImage = new BitmapImage(new Uri(Path.GetDirectoryName(path) + "\\res\\kir-ovik.png", UriKind.Absolute));
+            //PushButton ButtonADG1 = panelCheck.AddItem(ButtonADG1Data) as PushButton;
+
+            SplitButtonData sBtnData = new SplitButtonData("splitButton", "Split");
+            SplitButton sBtn = panelKIR.AddItem(sBtnData) as SplitButton;
+            sBtn.AddPushButton(ButtonADGCData);
+            sBtn.AddPushButton(ButtonADG1Data);
+
             return Result.Succeeded;
         }
 

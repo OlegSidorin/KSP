@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AddADGClass.cs" />
     <Compile Include="Commands\BasePointsCommand.cs" />
     <Compile Include="Commands\CheckMSKARwGCommand.cs" />
     <Compile Include="Commands\CheckCodCommand.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Commands\CheckMSKKRCommand.cs" />
     <Compile Include="Commands\CommonMethods.cs" />
     <Compile Include="Commands\CreateBIM360ViewCommand.cs" />
+    <Compile Include="Commands\AddGPParameterOVIK.cs" />
     <Compile Include="Commands\SharedParameterFromGUID.cs" />
     <Compile Include="Commands\JoshTest01Command.cs" />
     <Compile Include="Commands\MyMethods.cs" />
@@ -107,6 +109,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="KSP.addin.xml" />
+    <Content Include="res\2021-05-30_Классификатор.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="res\ADG_FOP.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="res\ao-32.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -135,6 +143,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="res\example.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="res\kir-ovik.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="res\kir.png" />
+    <Content Include="res\kir-class.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="res\navis-32.png">
