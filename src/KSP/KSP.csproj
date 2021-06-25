@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AddADGClass.cs" />
+    <Compile Include="Commands\AddGPParameterVK.cs" />
     <Compile Include="Commands\BasePointsCommand.cs" />
     <Compile Include="Commands\CheckMSKARwGCommand.cs" />
     <Compile Include="Commands\CheckCodCommand.cs" />
@@ -146,6 +147,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="res\kir-ovik.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="res\kir-vk.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="res\kir.png" />

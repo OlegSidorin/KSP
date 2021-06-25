@@ -135,10 +135,21 @@
             ButtonADG1Data.LargeImage = new BitmapImage(new Uri(Path.GetDirectoryName(path) + "\\res\\kir-ovik.png", UriKind.Absolute));
             //PushButton ButtonADG1 = panelCheck.AddItem(ButtonADG1Data) as PushButton;
 
+            string ButtonADG2Name = "ADG2Btn";
+            string ButtonADG2Text = "Добавить\nв ВК";
+            PushButtonData ButtonADG2Data = new PushButtonData(ButtonADG2Name, ButtonADG2Text, path, "KSP.AddGPParameterVK")
+            {
+                ToolTipImage = new BitmapImage(new Uri(Path.GetDirectoryName(path) + "\\res\\kir-vk.png", UriKind.Absolute)),
+                ToolTip = "Добавляет параметры в ВК по Киргизии"
+            };
+            ButtonADG2Data.LargeImage = new BitmapImage(new Uri(Path.GetDirectoryName(path) + "\\res\\kir-vk.png", UriKind.Absolute));
+            //PushButton ButtonADG1 = panelCheck.AddItem(ButtonADG1Data) as PushButton;
+
             SplitButtonData sBtnData = new SplitButtonData("splitButton", "Split");
             SplitButton sBtn = panelKIR.AddItem(sBtnData) as SplitButton;
             sBtn.AddPushButton(ButtonADGCData);
             sBtn.AddPushButton(ButtonADG1Data);
+            sBtn.AddPushButton(ButtonADG2Data);
 
             return Result.Succeeded;
         }
